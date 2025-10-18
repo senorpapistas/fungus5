@@ -6,7 +6,6 @@ using UnityEngine;
 public class Flashlight : MonoBehaviour
 {
     public Light flashlight;
-    public GameObject hitbox;
     public float detectionRange = 10f;
     public LayerMask enemyLayer;
 
@@ -50,13 +49,11 @@ public class Flashlight : MonoBehaviour
     void TurnOn()
     {
         flashlight.enabled = true;
-        hitbox.SetActive(true);
     }
 
     void TurnOff()
     {
         flashlight.enabled = false;
-        hitbox.SetActive(false);
 
         // Call OnFlashlightExit() for enemies within range
         Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, detectionRange, enemyLayer);

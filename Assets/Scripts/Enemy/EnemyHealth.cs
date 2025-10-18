@@ -13,19 +13,6 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Flashlight")) { ChangeHealth(-1); }
-    }
-
-    private void Update()
-    {
-        if (currentHealth < 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
     public void ChangeHealth(int change)
     {
         currentHealth += change;

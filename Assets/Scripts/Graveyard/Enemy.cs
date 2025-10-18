@@ -5,7 +5,8 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
 {
     public float moveSpeed = 2f;
     public float minDistanceToPlayer = 1f;
-    public float timeToKill = 3f;
+    //public float timeToKill = 3f;
+    public EnemyHealth health;
     public GameObject moneyPrefab;
     public float moneyValue = 10f;
 
@@ -46,9 +47,13 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
     private IEnumerator StunCountdown()
     {
         stunTimer = 0f;
-        while (stunTimer < timeToKill)
+        //while (stunTimer < timeToKill)
+        float timer = 0f;
+        while (health.currentHealth > 0)
         {
-            stunTimer += Time.deltaTime;
+            //stunTimer += Time.deltaTime;
+            timer += Time.deltaTime;
+            if (timer > .1f) { health.ChangeHealth(-4); timer = 0f; }
             yield return null;
         }
         Debug.Log($"Stun timer is creature than time to kill! Dropping loot");
