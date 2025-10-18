@@ -6,11 +6,19 @@ using UnityEngine;
 public class Flashlight : MonoBehaviour
 {
     public Light flashlight;
-    public float detectionRange = 10f;
     public LayerMask enemyLayer;
+    public static event Action<float, float> PowerChangeEvent;
+
+    [Header("Variables")]
+    public float detectionRange = 10f;
+    public float maxPower;
+    public float powerUseRate;
+    public float powerRechargeRate;
+
 
     [Header("State")]
     [SerializeField] private bool isOn;
+    [SerializeField] public float currentPower;
 
     void Start()
     {
@@ -18,6 +26,8 @@ public class Flashlight : MonoBehaviour
         {
             flashlight = GetComponentInChildren<Light>();
         }
+
+        currentPower = maxPower;
     }
 
     void Update()
@@ -33,7 +43,15 @@ public class Flashlight : MonoBehaviour
 
         if (isOn)
         {
-            TurnOn();
+            ConsumePower();
+            if (currentPower > 0)
+            {
+                TurnOn();
+            }
+            else
+            {
+                TurnOff();
+            }
         }
         else
         {
@@ -54,6 +72,7 @@ public class Flashlight : MonoBehaviour
     void TurnOff()
     {
         flashlight.enabled = false;
+        RechargePower();
 
         // Call OnFlashlightExit() for enemies within range
         Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, detectionRange, enemyLayer);
@@ -123,5 +142,23 @@ public class Flashlight : MonoBehaviour
     public void Toggle()
     {
         flashlight.enabled = !flashlight.enabled;
+    }
+
+    private void ChangePower(float change)
+    {
+        currentPower += change;
+        PowerChangeEvent?.Invoke(currentPower,maxPower);
+    }
+
+    public void ConsumePower()
+    {
+        ChangePower(-powerUseRate * Time.deltaTime);
+        if (currentPower < 0) { currentPower = 0; }
+    }
+
+    public void RechargePower()
+    {
+        if (currentPower < maxPower) { ChangePower(powerRechargeRate * Time.deltaTime); }
+        if (currentPower > maxPower) { currentPower = maxPower; }
     }
 }

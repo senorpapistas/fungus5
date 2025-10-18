@@ -140,13 +140,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea4ccf2ea0ec284a9a4730ce975e4ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Flashlight
-  flashlight: {fileID: 0}
-  hitbox: {fileID: 0}
-  detectionRange: 10
+  flashlight: {fileID: 8624366365362248680}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
+  detectionRange: 10
+  maxPower: 10
+  powerUseRate: 1
+  powerRechargeRate: 0.5
   isOn: 0
+  currentPower: 0
 --- !u!1 &2925199962071604262
 GameObject:
   m_ObjectHideFlags: 0

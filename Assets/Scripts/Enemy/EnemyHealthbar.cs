@@ -10,12 +10,12 @@ public class EnemyHealthbar : MonoBehaviour
 
     private void OnEnable()
     {
-        enemyHealth.HealthChange += OnHealthChange;
+        enemyHealth.HealthChangeEvent += OnHealthChangeEvent;
     }
 
     private void OnDisable()
     {
-        enemyHealth.HealthChange -= OnHealthChange;
+        enemyHealth.HealthChangeEvent -= OnHealthChangeEvent;
     }
 
     private void Start()
@@ -24,7 +24,7 @@ public class EnemyHealthbar : MonoBehaviour
         healthbar.enabled = false;
     }
 
-    void OnHealthChange()
+    void OnHealthChangeEvent()
     {
         bg.enabled = true;
         healthbar.enabled = true;

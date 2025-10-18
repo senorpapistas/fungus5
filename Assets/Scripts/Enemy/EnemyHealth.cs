@@ -6,7 +6,7 @@ public class EnemyHealth : MonoBehaviour
     public int currentHealth;
     public int maxHealth;
 
-    public event Action HealthChange;
+    public event Action HealthChangeEvent;
 
     private void Start()
     {
@@ -16,6 +16,6 @@ public class EnemyHealth : MonoBehaviour
     public void ChangeHealth(int change)
     {
         currentHealth += change;
-        HealthChange?.Invoke();
+        HealthChangeEvent?.Invoke();
     }
 }
