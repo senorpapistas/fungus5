@@ -3,7 +3,7 @@ using UnityEngine;
 public class BasicMovement : MonoBehaviour
 {
     public float moveSpeed = 1f;
-    public float turn = 1f;
+    public float turnSpeed = 1f;
 
     private float moveInput;
     private float turnInput;
@@ -17,6 +17,6 @@ public class BasicMovement : MonoBehaviour
     {
 
         transform.Translate(Vector3.forward * moveInput * moveSpeed);
-        transform.Rotate(Vector3.up, turnInput * turn);
+        transform.Rotate(Vector3.up, turnInput * turnSpeed);
     }
 }
