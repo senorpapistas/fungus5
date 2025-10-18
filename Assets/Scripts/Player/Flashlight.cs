@@ -6,6 +6,7 @@ using UnityEngine;
 public class Flashlight : MonoBehaviour
 {
     public Light flashlight;
+    public GameObject hitbox;
 
     [Header("State")]
     [SerializeField] private bool isOn;
@@ -13,7 +14,7 @@ public class Flashlight : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,18 +24,30 @@ public class Flashlight : MonoBehaviour
         {
             isOn = true;
         }
-        else 
-        { 
+        else
+        {
             isOn = false;
         }
 
         if (isOn)
         {
-            flashlight.enabled = true;
+            TurnOn();
         }
         else
         {
-            flashlight.enabled = false;
+            TurnOff();
         }
+    }
+
+    void TurnOn()
+    {
+        flashlight.enabled = true;
+        hitbox.SetActive(true);
+    }
+
+    void TurnOff()
+    {
+        flashlight.enabled = false;
+        hitbox.SetActive(false);
     }
 }
