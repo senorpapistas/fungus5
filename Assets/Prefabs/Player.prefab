@@ -145,11 +145,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   detectionRange: 10
-  maxPower: 10
+  maxPower: 5
   powerUseRate: 1
   powerRechargeRate: 0.5
+  whenToStopCooldown: 5
   isOn: 0
   currentPower: 0
+  inCooldown: 0
 --- !u!1 &2925199962071604262
 GameObject:
   m_ObjectHideFlags: 0

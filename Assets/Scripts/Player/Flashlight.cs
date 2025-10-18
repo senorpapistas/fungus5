@@ -8,17 +8,20 @@ public class Flashlight : MonoBehaviour
     public Light flashlight;
     public LayerMask enemyLayer;
     public static event Action<float, float> PowerChangeEvent;
+    public static event Action<bool> CooldownEvent;
 
     [Header("Variables")]
     public float detectionRange = 10f;
     public float maxPower;
     public float powerUseRate;
     public float powerRechargeRate;
+    public float whenToStopCooldown;
 
 
     [Header("State")]
     [SerializeField] private bool isOn;
     [SerializeField] public float currentPower;
+    [SerializeField] private bool inCooldown;   //when 0 power, flashlight must charge back up until amount whenToStopCooldown is reached
 
     void Start()
     {
@@ -28,6 +31,7 @@ public class Flashlight : MonoBehaviour
         }
 
         currentPower = maxPower;
+        inCooldown = false;
     }
 
     void Update()
@@ -41,7 +45,7 @@ public class Flashlight : MonoBehaviour
             isOn = false;
         }
 
-        if (isOn)
+        if (isOn && !inCooldown)
         {
             ConsumePower();
             if (currentPower > 0)
@@ -153,12 +157,13 @@ public class Flashlight : MonoBehaviour
     public void ConsumePower()
     {
         ChangePower(-powerUseRate * Time.deltaTime);
-        if (currentPower < 0) { currentPower = 0; }
+        if (currentPower < 0) { currentPower = 0; inCooldown = true; CooldownEvent?.Invoke(true); }
     }
 
     public void RechargePower()
     {
         if (currentPower < maxPower) { ChangePower(powerRechargeRate * Time.deltaTime); }
-        if (currentPower > maxPower) { currentPower = maxPower; }
+        if (currentPower > maxPower) { currentPower = maxPower;}
+        if (currentPower >= whenToStopCooldown) { inCooldown = false; CooldownEvent?.Invoke(false); }
     }
 }
