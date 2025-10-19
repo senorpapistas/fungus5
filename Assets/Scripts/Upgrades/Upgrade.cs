@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 
+[System.Serializable]
 public class Upgrade
 {
     public string Name { get; private set; }

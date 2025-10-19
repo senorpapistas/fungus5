@@ -8,6 +8,18 @@ public class PlayerWallet : MonoBehaviour
     [SerializeField]
     private float balance;
 
+    private float moneyMultiplier = 1f;
+
+    private void OnEnable()
+    {
+        UpgradeEvents.MoneyMultiplierIncreased += IncreaseMoneyMultiplier;
+    }
+
+    private void OnDisable()
+    {
+        UpgradeEvents.MoneyMultiplierIncreased -= IncreaseMoneyMultiplier;
+    }
+
     private void OnValidate()
     {
         MoneyChangeEvent?.Invoke(balance);
@@ -15,12 +27,17 @@ public class PlayerWallet : MonoBehaviour
 
     public void AddMoney(float amount)
     {
-        balance += amount;
+        float final_amount = amount * moneyMultiplier;
+        balance += final_amount;
         MoneyChangeEvent?.Invoke(balance);
     }
 
     public float GetBalance()
     {
         return balance;
+    }
+    private void IncreaseMoneyMultiplier(float multiplier)
+    {
+        moneyMultiplier *= multiplier;
     }
 }

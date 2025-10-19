@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System.Collections.Generic;
 public class UpgradesUI : MenuClass
 {
@@ -13,6 +14,7 @@ public class UpgradesUI : MenuClass
 
     private void Start()
     {
+        base.Start();
         foreach (var upgrade in UpgradeManager.Instance.GetAllUpgrades())
         {
             CreateUpgradeButton(upgrade);
@@ -30,19 +32,26 @@ public class UpgradesUI : MenuClass
         GameObject buttonObj = Instantiate(upgradeButtonPrefab, upgradesContainer);
         Button button = buttonObj.GetComponent<Button>();
 
-        Text buttonText = buttonObj.GetComponentInChildren<Text>();
-        buttonText.text = $"{upgrade.Name}\nCost: {upgrade.GetCurrentPrice()}";
+        TMP_Text nameText = buttonObj.transform.Find("Name").GetComponent<TMP_Text>();
+        TMP_Text ownedText = buttonObj.transform.Find("Count").GetComponent<TMP_Text>();
+        TMP_Text priceText = buttonObj.transform.Find("Price").GetComponent<TMP_Text>();
+        nameText.text = upgrade.Name;
+        ownedText.text = $"+{upgrade.AmountOwned}";
+        priceText.text = $"${upgrade.GetCurrentPrice()}";
+
+        //Text buttonText = buttonObj.GetComponentInChildren<Text>();
+        //buttonText.text = $"{upgrade.Name}\nCost: {upgrade.GetCurrentPrice()}";
 
         button.onClick.AddListener(() =>
         {
-            TryPurchaseUpgrade(upgrade, buttonText);
+            TryPurchaseUpgrade(upgrade, priceText, ownedText);
         });
 
         upgradeButtons[upgrade.Name] = button;
 
     }
 
-    private void TryPurchaseUpgrade(Upgrade upgrade, Text buttonText)
+    private void TryPurchaseUpgrade(Upgrade upgrade, TMP_Text newText, TMP_Text newOwned)
     {
         float price = upgrade.GetCurrentPrice();
 
@@ -53,7 +62,8 @@ public class UpgradesUI : MenuClass
             playerWallet.AddMoney(-price);
             upgrade.Purchase();
 
-            buttonText.text = $"{upgrade.Name}\nCost: {upgrade.GetCurrentPrice()}";
+            newText.text = $"${upgrade.GetCurrentPrice()}";
+            newOwned.text = $"+{upgrade.AmountOwned}";
         }
         else
         {

@@ -57,7 +57,7 @@ public class GameUpgrades : MonoBehaviour
             rate: 2f,
             growth: 2.5f
         );
-        moneyGainUpg.OnUpgradePurchased += () => UpgradeEvents.OnMoneyMultInc(1f);
+        moneyGainUpg.OnUpgradePurchased += () => UpgradeEvents.OnMoneyMultInc(2f);
         UpgradeManager.Instance.RegisterUpgrade(moneyGainUpg);
 
         var maxEnemySpawnsUpg = new Upgrade(

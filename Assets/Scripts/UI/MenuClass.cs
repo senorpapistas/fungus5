@@ -6,7 +6,7 @@ public class MenuClass : MonoBehaviour
     public GameObject menu;
     public bool isActive;
 
-    private void Start()
+    public void Start()
     {
         isActive = false;
         menu.SetActive(false);

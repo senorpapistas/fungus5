@@ -6,8 +6,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
-    [Header("Player")]
-    public GameObject player;
+    //[Header("Player")]
+    //public GameObject player;
 
     [Header("Currently Open Menu")]
     public MenuClass currentOpenMenu;
