@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,7 @@ public class FlashlightMeter : MonoBehaviour
 {
     public Image bg;
     public Image bar;
+    public TMP_Text cooldownWarning;
     private Color defaultColor;
 
     private void OnEnable()
@@ -22,6 +24,7 @@ public class FlashlightMeter : MonoBehaviour
     private void Start()
     {
         defaultColor = bar.color;
+        cooldownWarning.enabled = false;
     }
 
     void OnPowerChangeEvent(float currentPower, float maxPower)
@@ -33,10 +36,12 @@ public class FlashlightMeter : MonoBehaviour
         if (status)
         {
             bar.color = Color.red;
+            cooldownWarning.enabled = true;
         }
         else
         {
             bar.color = defaultColor;
+            cooldownWarning.enabled = false;
         }
     }
 }
