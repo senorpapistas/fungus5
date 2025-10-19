@@ -541,6 +541,7 @@ MonoBehaviour:
   minDistanceToPlayer: 1
   health: {fileID: 7427392085740938963}
   moneyPrefab: {fileID: 7759036317813290140, guid: 011596222278c2c429ccbcf2c7c1a25a, type: 3}
+  explosionPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   moneyValue: 10
 --- !u!114 &7427392085740938963
 MonoBehaviour:

@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
     //public float timeToKill = 3f;
     public EnemyHealth health;
     public GameObject moneyPrefab;
+    public GameObject explosionPrefab;
     public float moneyValue = 10f;
 
     private Transform player;
@@ -98,6 +99,10 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
             {
                 moneyComponent.SetValue(moneyValue);
             }
+            // Explosion
+            GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
+            Destroy(explosion, 2f);
+
             // Destroy enemy
             Destroy(gameObject);
 
