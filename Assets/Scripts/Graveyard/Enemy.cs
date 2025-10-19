@@ -24,11 +24,17 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
     public GenericLootDropTableGameObject lootDropTable;
     public int num_drops;
 
+    [SerializeField] private GameObject atkHB;
+    [SerializeField] private bool atkCD;
+
+    private Coroutine stunCR;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         lastPosition = transform.position;
         lootDropTable.ValidateTable();
+        atkCD = true;
     }
 
     private void Update()
@@ -42,6 +48,18 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
                 Move(direction);
             }
         }
+        if (Vector3.Distance(transform.position, player.position) <= minDistanceToPlayer)
+        {
+            Debug.Log("itchy enemy nuts");
+            if (atkCD)
+            {
+                Debug.Log("spittin on that thang");
+                atkHB.SetActive(true);
+                atkCD = false;
+                atkHB.GetComponent<EnemyAttack>().Spit();
+                StartCoroutine(AttackCooldown());
+            }
+        }
     }
 
     public void OnFlashlightHit()
@@ -50,7 +68,7 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
         if (!isStunned)
         {
             isStunned = true;
-            StartCoroutine(StunCountdown());
+            stunCR = StartCoroutine(StunCountdown());
         }
     }
 
@@ -70,11 +88,19 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
         //DropLoot(transform.position);
     }
 
+    private IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(1f);
+        Debug.Log("atkCD done");
+        atkHB.SetActive(false);
+        atkCD = true;
+    }
+
     public void OnFlashlightExit()
     {
         // Resume enemy movement
         isStunned = false;
-        StopAllCoroutines();
+        StopCoroutine(stunCR);
     }
 
     public void Move(Vector3 direction)

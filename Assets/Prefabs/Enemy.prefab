@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3053562590308566717
 Transform:
   m_ObjectHideFlags: 0
@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250168595852165944}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
   damage: 1
+  spitFX: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
 --- !u!1 &3833090038736273685
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,8 +665,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0692ba44dae107b4a86f36803712a7dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  moveSpeed: 0.2
-  minDistanceToPlayer: 1
+  moveSpeed: 1
+  minDistanceToPlayer: 2
   health: {fileID: 7427392085740938963}
   moneyPrefab: {fileID: 7759036317813290140, guid: 011596222278c2c429ccbcf2c7c1a25a, type: 3}
   explosionPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
@@ -683,6 +684,8 @@ MonoBehaviour:
       probabilityRangeFrom: 20
       probabilityRangeTo: 100
   num_drops: 1
+  atkHB: {fileID: 1250168595852165944}
+  atkCD: 0
 --- !u!114 &7427392085740938963
 MonoBehaviour:
   m_ObjectHideFlags: 0
