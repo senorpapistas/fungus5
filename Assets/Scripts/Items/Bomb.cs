@@ -30,6 +30,7 @@ public class Bomb : MonoBehaviour
                 GameObject eprtcl = Instantiate(enemy_explosion, rb.transform.position, Quaternion.identity);
                 Destroy(eprtcl, 2f);
                 rb.useGravity = true;
+                rb.GetComponent<EnemyHealth>().ChangeHealth(-100);
             }
             if (!once)
             {

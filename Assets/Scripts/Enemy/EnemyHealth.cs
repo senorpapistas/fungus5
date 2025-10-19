@@ -17,5 +17,9 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth += change;
         HealthChangeEvent?.Invoke();
+        if (currentHealth <= 0)
+        {
+            gameObject.GetComponent<Enemy>().DropLoot(transform.position);
+        }
     }
 }

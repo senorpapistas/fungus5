@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
             yield return null;
         }
         Debug.Log($"Stun timer is creature than time to kill! Dropping loot");
-        DropLoot(transform.position);
+        //DropLoot(transform.position);
     }
 
     public void OnFlashlightExit()
