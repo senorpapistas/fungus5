@@ -7,15 +7,15 @@ public class MoneyCount : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerWallet.MoneyAddEvent += OnMoneyAddEvent;
+        PlayerWallet.MoneyChangeEvent += OnMoneyChangeEvent;
     }
 
     private void OnDisable()
     {
-        PlayerWallet.MoneyAddEvent -= OnMoneyAddEvent;
+        PlayerWallet.MoneyChangeEvent -= OnMoneyChangeEvent;
     }
 
-    private void OnMoneyAddEvent(float balance)
+    private void OnMoneyChangeEvent(float balance)
     {
         text.text = "$" + balance;
     }

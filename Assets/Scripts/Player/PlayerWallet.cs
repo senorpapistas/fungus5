@@ -3,15 +3,20 @@ using UnityEngine;
 
 public class PlayerWallet : MonoBehaviour
 {
-    public static event Action<float> MoneyAddEvent;
+    public static event Action<float> MoneyChangeEvent;
 
     [SerializeField]
     private float balance;
 
+    private void OnValidate()
+    {
+        MoneyChangeEvent?.Invoke(balance);
+    }
+
     public void AddMoney(float amount)
     {
         balance += amount;
-        MoneyAddEvent?.Invoke(balance);
+        MoneyChangeEvent?.Invoke(balance);
     }
 
     public float GetBalance()
