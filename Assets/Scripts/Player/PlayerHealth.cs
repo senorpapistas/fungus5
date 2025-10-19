@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -9,6 +10,11 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField]
     private int currentHealth, maxHealth;
+    [SerializeField]
+    private float InvincibilityTime;
+
+    [Header("State")]
+    public bool invincible;
 
     private void Start()
     {
@@ -33,11 +39,29 @@ public class PlayerHealth : MonoBehaviour
 
     public void LoseHealth(int change)
     {
-        currentHealth -= change;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        PlayerChangeHealthEvent?.Invoke(currentHealth);
+        if (!invincible)
+        {
+            currentHealth -= change;
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+            PlayerChangeHealthEvent?.Invoke(currentHealth);
+
+            StartInvincibility();
+        }
     }
 
     public int GetCurrentHealth() { return currentHealth; }
     public int GetMaxHealth() { return maxHealth; }
+
+
+    private void StartInvincibility()
+    {
+        StartCoroutine(Invincibility());
+    }
+
+    IEnumerator Invincibility()
+    {
+        invincible = true;
+        yield return new WaitForSeconds(InvincibilityTime);
+        invincible = false;
+    }
 }
