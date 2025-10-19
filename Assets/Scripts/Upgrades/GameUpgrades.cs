@@ -18,8 +18,8 @@ public class GameUpgrades : MonoBehaviour
         var flashlightRangeUpg = new Upgrade(
             "Flashlight Range",
             basePrice: 10,
-            rate: 1.5f,
-            growth: 1.3f
+            rate: 2f,
+            growth: 1.1f
         );
         flashlightRangeUpg.OnUpgradePurchased += () => UpgradeEvents.OnFlashRangeInc(1f);
         UpgradeManager.Instance.RegisterUpgrade(flashlightRangeUpg);
@@ -27,8 +27,8 @@ public class GameUpgrades : MonoBehaviour
         var flashlightAngleUpg = new Upgrade(
             "Flashlight Angle",
             basePrice: 10,
-            rate: 1.5f,
-            growth: 1.3f
+            rate: 2f,
+            growth: 1.1f
         );
         flashlightAngleUpg.OnUpgradePurchased += () => UpgradeEvents.OnFlashAngleInc(1f);
         UpgradeManager.Instance.RegisterUpgrade(flashlightAngleUpg);
@@ -45,26 +45,26 @@ public class GameUpgrades : MonoBehaviour
         var playerMSUpg = new Upgrade(
             "Player Movespeed",
             basePrice: 300,
-            rate: 3.7f,
-            growth: 2f
+            rate: 2f,
+            growth: 1.1f
         );
         playerMSUpg.OnUpgradePurchased += () => UpgradeEvents.OnPlayerMSInc(1f);
         UpgradeManager.Instance.RegisterUpgrade(playerMSUpg);
 
         var moneyGainUpg = new Upgrade(
             "Money Multiplier",
-            basePrice: 2000,
+            basePrice: 200,
             rate: 2f,
-            growth: 2.5f
+            growth: 1.1f
         );
         moneyGainUpg.OnUpgradePurchased += () => UpgradeEvents.OnMoneyMultInc(2f);
         UpgradeManager.Instance.RegisterUpgrade(moneyGainUpg);
 
         var maxEnemySpawnsUpg = new Upgrade(
             "Max Enemy Spawns",
-            basePrice: 300,
-            rate: 1.3f,
-            growth: 2.5f
+            basePrice: 200,
+            rate: 2f,
+            growth: 1.1f
         );
         maxEnemySpawnsUpg.OnUpgradePurchased += () => UpgradeEvents.OnEnemySpawnInc(1);
         UpgradeManager.Instance.RegisterUpgrade(maxEnemySpawnsUpg);
@@ -143,3 +143,55 @@ public class GameUpgrades : MonoBehaviour
 //    growth: 1f,
 //    onUpgrade: () => Debug.Log("fat")
 //));
+
+/*
+ * Original scalings:
+ *         var playerMSUpg = new Upgrade(
+            "Player Movespeed",
+            basePrice: 300,
+            rate: 3.7f,
+            growth: 2f
+        );
+        playerMSUpg.OnUpgradePurchased += () => UpgradeEvents.OnPlayerMSInc(1f);
+        UpgradeManager.Instance.RegisterUpgrade(playerMSUpg);
+
+        var moneyGainUpg = new Upgrade(
+            "Money Multiplier",
+            basePrice: 2000,
+            rate: 2f,
+            growth: 2.5f
+        );
+        moneyGainUpg.OnUpgradePurchased += () => UpgradeEvents.OnMoneyMultInc(2f);
+        UpgradeManager.Instance.RegisterUpgrade(moneyGainUpg);
+
+        var maxEnemySpawnsUpg = new Upgrade(
+            "Max Enemy Spawns",
+            basePrice: 300,
+            rate: 1.3f,
+            growth: 2.5f
+        );
+        maxEnemySpawnsUpg.OnUpgradePurchased += () => UpgradeEvents.OnEnemySpawnInc(1);
+        UpgradeManager.Instance.RegisterUpgrade(maxEnemySpawnsUpg);
+ * 
+ *         var flashlightRangeUpg = new Upgrade(
+            "Flashlight Range",
+            basePrice: 10,
+            rate: 1.5f,
+            growth: 1.3f
+        );
+        flashlightRangeUpg.OnUpgradePurchased += () => UpgradeEvents.OnFlashRangeInc(1f);
+        UpgradeManager.Instance.RegisterUpgrade(flashlightRangeUpg);
+
+        var flashlightAngleUpg = new Upgrade(
+            "Flashlight Angle",
+            basePrice: 10,
+            rate: 1.5f,
+            growth: 1.3f
+        );
+        flashlightAngleUpg.OnUpgradePurchased += () => UpgradeEvents.OnFlashAngleInc(1f);
+        UpgradeManager.Instance.RegisterUpgrade(flashlightAngleUpg);
+ * 
+ * 
+ * 
+ * 
+ */
