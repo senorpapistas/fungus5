@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-public class UpgradesUI : MonoBehaviour
+public class UpgradesUI : MenuClass
 {
     [Header("UI Elements")]
     public GameObject upgradeButtonPrefab;
     public Transform upgradesContainer;
+
+    private PlayerWallet playerWallet;
 
     private Dictionary<string, Button> upgradeButtons = new Dictionary<string, Button>();
 
@@ -14,6 +16,12 @@ public class UpgradesUI : MonoBehaviour
         foreach (var upgrade in UpgradeManager.Instance.GetAllUpgrades())
         {
             CreateUpgradeButton(upgrade);
+        }
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerWallet = player.GetComponent<PlayerWallet>();
         }
     }
 
@@ -38,9 +46,11 @@ public class UpgradesUI : MonoBehaviour
     {
         float price = upgrade.GetCurrentPrice();
 
-        if (true) // Check the player wallet if the player can afford 
+        // Check the player wallet if the player can afford 
+        if (playerWallet != null && playerWallet.GetBalance() >= price) 
         {
             // take away the money in player wallet
+            playerWallet.AddMoney(-price);
             upgrade.Purchase();
 
             buttonText.text = $"{upgrade.Name}\nCost: {upgrade.GetCurrentPrice()}";

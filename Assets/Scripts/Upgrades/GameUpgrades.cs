@@ -33,14 +33,14 @@ public class GameUpgrades : MonoBehaviour
         flashlightAngleUpg.OnUpgradePurchased += () => UpgradeEvents.OnFlashAngleInc(1f);
         UpgradeManager.Instance.RegisterUpgrade(flashlightAngleUpg);
 
-        var flashlightDmgUpg = new Upgrade(
-            "Flashlight Damage",
-            basePrice: 300,
-            rate: 1.5f,
-            growth: 1.3f
-        );
-        flashlightDmgUpg.OnUpgradePurchased += () => UpgradeEvents.OnFlashDmgInc(1f);
-        UpgradeManager.Instance.RegisterUpgrade(flashlightDmgUpg);
+        //var flashlightDmgUpg = new Upgrade(
+        //    "Flashlight Damage",
+        //    basePrice: 300,
+        //    rate: 1.5f,
+        //    growth: 1.3f
+        //);
+        //flashlightDmgUpg.OnUpgradePurchased += () => UpgradeEvents.OnFlashDmgInc(1f);
+        //UpgradeManager.Instance.RegisterUpgrade(flashlightDmgUpg);
 
         var playerMSUpg = new Upgrade(
             "Player Movespeed",
