@@ -27,14 +27,14 @@ public class PlayerHealth : MonoBehaviour
     public void GainHealth(int change)
     {
         currentHealth += change;
-        Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         PlayerChangeHealthEvent?.Invoke(currentHealth);
     }
 
     public void LoseHealth(int change)
     {
         currentHealth -= change;
-        Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         PlayerChangeHealthEvent?.Invoke(currentHealth);
     }
 

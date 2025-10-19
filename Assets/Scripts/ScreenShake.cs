@@ -10,12 +10,14 @@ public class ScreenShake : MonoBehaviour
 
     private void OnEnable()
     {
-        Enemy.EnemyDeathEvent += OnEnemyDeathEvent;
+        Enemy.EnemyDeathEvent += Shake;
+        PlayerHealth.PlayerChangeHealthEvent += _ => Shake();
     }
 
     private void OnDisable()
     {
-        Enemy.EnemyDeathEvent -= OnEnemyDeathEvent;
+        Enemy.EnemyDeathEvent -= Shake;
+        PlayerHealth.PlayerChangeHealthEvent -= _ => Shake();
     }
 
     private IEnumerator Shaking()
@@ -38,12 +40,8 @@ public class ScreenShake : MonoBehaviour
         if (start)
         {
             start = false;
+            StopAllCoroutines();
             StartCoroutine(Shaking());
         }
-    }
-
-    public void OnEnemyDeathEvent() 
-    {
-        Shake();
     }
 }

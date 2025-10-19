@@ -15,8 +15,8 @@ public class MoneyCount : MonoBehaviour
         PlayerWallet.MoneyAddEvent -= OnMoneyAddEvent;
     }
 
-    private void OnMoneyAddEvent(float amount)
+    private void OnMoneyAddEvent(float balance)
     {
-        text.text = "$" + amount;
+        text.text = "$" + balance;
     }
 }

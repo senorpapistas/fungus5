@@ -11,7 +11,7 @@ public class PlayerWallet : MonoBehaviour
     public void AddMoney(float amount)
     {
         balance += amount;
-        MoneyAddEvent?.Invoke(amount);
+        MoneyAddEvent?.Invoke(balance);
     }
 
     public float GetBalance()
