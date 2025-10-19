@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
     public GameObject explosionPrefab;
     public float moneyValue = 10f;
 
+    private float damagePerHit = 4f;
+
     private Transform player;
     private bool isStunned;
     //private float stunTimer;

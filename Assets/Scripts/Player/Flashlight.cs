@@ -166,4 +166,28 @@ public class Flashlight : MonoBehaviour
         if (currentPower > maxPower) { currentPower = maxPower;}
         if (currentPower >= whenToStopCooldown) { inCooldown = false; CooldownEvent?.Invoke(false); }
     }
+
+    private void OnEnable()
+    {
+        UpgradeEvents.FlashlightRangeIncreased += IncreaseRange;
+        UpgradeEvents.FlashlightAngleIncreased += IncreaseAngle;
+    }
+
+    private void OnDisable()
+    {
+        UpgradeEvents.FlashlightRangeIncreased -= IncreaseRange;
+        UpgradeEvents.FlashlightAngleIncreased -= IncreaseAngle;
+    }
+
+    private void IncreaseRange(float amount)
+    {
+        detectionRange += amount;
+    }
+
+    private void IncreaseAngle(float amount)
+    {
+        flashlight.spotAngle += amount;
+        detectionRange += amount;
+    }
+
 }
