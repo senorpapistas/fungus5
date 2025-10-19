@@ -5,6 +5,7 @@ public class InteractItem : MonoBehaviour
 {
     [SerializeField] private GameObject heldPos;
     [SerializeField] private Pickup currItem;
+    Collider[] hitColliders;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,19 +32,34 @@ public class InteractItem : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        CheckPickup();
+    }
+
     void TryPickup()
     {
         //Debug.Log("working?");
-        Collider[] hitColliders = Physics.OverlapBox(transform.position + transform.forward, transform.localScale, Quaternion.identity, LayerMask.GetMask("Interactable"));
+        //Collider[] hitColliders = Physics.OverlapBox(transform.position + transform.forward, transform.localScale, Quaternion.identity, LayerMask.GetMask("Interactable"));
         for (int i = 0; i < hitColliders.Length; i++)
         {
             Debug.Log(hitColliders[i].gameObject.name);
-            if (hitColliders[i].GetComponent <Pickup>() != null)
+            if (hitColliders[i].GetComponent<Pickup>() != null)
             {
                 Debug.Log("big fart incoming");
                 currItem = hitColliders[i].GetComponent<Pickup>();
                 currItem.PickUp(heldPos.transform);
+                break;
             }
+        }
+    }
+
+    void CheckPickup()
+    {
+        hitColliders = Physics.OverlapBox(transform.position + transform.forward, transform.localScale, Quaternion.identity, LayerMask.GetMask("Interactable"));
+        if (hitColliders.Length > 0)
+        {
+            Debug.Log("items nearby");
         }
     }
 

@@ -1,53 +1,49 @@
 using System.Collections;
 using UnityEngine;
 
-public class Pickup : MonoBehaviour
+public abstract class Pickup : MonoBehaviour
 {
-    private Rigidbody rb;
-    [SerializeField] float throwStrength = 5f;
+    private Rigidbody _rb;
+    [SerializeField] private float _throwStrength = 5f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public virtual void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
         changePhysics(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void PickUp(Transform held)
+    public virtual void PickUp(Transform held)
     {
         transform.SetParent(held, false);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
         changePhysics(true);
-        Physics.IgnoreLayerCollision(10, 6, true);
+        GetComponent<Collider>().enabled = false;
+        //Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>(), true);
     }
 
-    public void Throw()
+    public virtual void Throw()
     {
         transform.SetParent(null);
         changePhysics(false);
         Vector3 pos = transform.forward + transform.up * .75f;
-        rb.AddForce(pos * throwStrength, ForceMode.Impulse);
+        _rb.AddForce(pos * _throwStrength, ForceMode.Impulse);
         StartCoroutine(EnablePlayerCollision());
     }
 
-    private void changePhysics(bool on)
+    public void changePhysics(bool on)
     {
-        if (rb != null)
+        if (_rb != null)
         {
-            rb.useGravity = !on;
-            rb.isKinematic = on;
+            _rb.useGravity = !on;
+            _rb.isKinematic = on;
         }
     }
 
-    private IEnumerator EnablePlayerCollision()
+    protected IEnumerator EnablePlayerCollision()
     {
-        yield return new WaitForSeconds(1);
-        Physics.IgnoreLayerCollision(10, 6, false);
+        yield return new WaitForSeconds(.3f);
+        GetComponent<Collider>().enabled = true;
+        //Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>(), false);
     }
 }
