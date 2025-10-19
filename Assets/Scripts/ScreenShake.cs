@@ -6,6 +6,7 @@ public class ScreenShake : MonoBehaviour
     public float duration = 1.0f;
     public AnimationCurve curve;
     public bool start = false;
+    public Transform defaultCamPos;
 
     private void OnEnable()
     {
@@ -19,18 +20,16 @@ public class ScreenShake : MonoBehaviour
 
     private IEnumerator Shaking()
     {
-        Vector3 startPos = transform.position;
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
             float strength = curve.Evaluate(elapsedTime / duration);
-            transform.position = startPos + Random.insideUnitSphere * strength;
+            transform.position = transform.position + Random.insideUnitSphere * strength;
             yield return null;
+            transform.position = defaultCamPos.transform.position;
         }
-
-        transform.position = startPos;
     }
 
     private void Shake ()
