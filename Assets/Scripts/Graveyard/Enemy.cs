@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class Enemy : MonoBehaviour, IMoveable, ILootable
 {
@@ -14,6 +15,8 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
     private bool isStunned;
     private float stunTimer;
     private Vector3 lastPosition;
+
+    public static event Action EnemyDeathEvent;
 
     private void Start()
     {
@@ -97,6 +100,9 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
             }
             // Destroy enemy
             Destroy(gameObject);
+
+            //event call
+            EnemyDeathEvent?.Invoke();
         }
         else
         {
