@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Graveyard.unity
+    guid: cbf7c5348c457dd46b5128fce986e738
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BombTest.unity
     guid: 066f8d5c0019b3943bde0cceb574beb0
   m_configObjects:
