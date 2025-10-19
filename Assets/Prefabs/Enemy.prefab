@@ -543,6 +543,19 @@ MonoBehaviour:
   moneyPrefab: {fileID: 7759036317813290140, guid: 011596222278c2c429ccbcf2c7c1a25a, type: 3}
   explosionPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   moneyValue: 10
+  lootDropTable:
+    lootDropItems:
+    - item: {fileID: 4529491272055937221, guid: da66fa8c27b0fd94bb06a8cd9ea25134, type: 3}
+      Weight: 20
+      Chance: 20
+      probabilityRangeFrom: 0
+      probabilityRangeTo: 20
+    - item: {fileID: 8400530084364778275, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
+      Weight: 80
+      Chance: 80
+      probabilityRangeFrom: 20
+      probabilityRangeTo: 100
+  num_drops: 1
 --- !u!114 &7427392085740938963
 MonoBehaviour:
   m_ObjectHideFlags: 0

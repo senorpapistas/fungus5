@@ -19,10 +19,14 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
 
     public static event Action EnemyDeathEvent;
 
+    public GenericLootDropTableGameObject lootDropTable;
+    public int num_drops;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         lastPosition = transform.position;
+        lootDropTable.ValidateTable();
     }
 
     private void Update()
@@ -93,12 +97,16 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
         if (moneyPrefab != null)
         {
             GameObject money = Instantiate(moneyPrefab, position, Quaternion.identity); //  + Vector3.up
-            Debug.Log($"Enemy killed! Dropping loot at {position + Vector3.up}");
+            //Debug.Log($"Enemy killed! Dropping loot at {position + Vector3.up}");
             Money moneyComponent = money.GetComponent<Money>();
             if (moneyComponent != null)
             {
                 moneyComponent.SetValue(moneyValue);
             }
+
+            GenericLootDropItemGameObject drop = lootDropTable.PickLootDropItem();
+            GameObject loot = Instantiate(drop.item, position, Quaternion.identity);
+
             // Explosion
             GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
             Destroy(explosion, 2f);
@@ -113,5 +121,10 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
         {
             Debug.Log("prefab error in Enemy.cs you should not get here");
         }
+    }
+
+    void OnValidate()
+    {
+        lootDropTable.ValidateTable();
     }
 }

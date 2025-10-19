@@ -746,6 +746,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 011596222278c2c429ccbcf2c7c1a25a, type: 3}
+--- !u!1001 &966406836655082312
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6073837208515904648, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.05979
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073837208515904648, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073837208515904648, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.82997
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073837208515904648, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073837208515904648, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073837208515904648, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073837208515904648, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073837208515904648, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073837208515904648, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073837208515904648, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8400530084364778275, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
+      propertyPath: m_Name
+      value: Nothing
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
 --- !u!1001 &4583217915525996809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -754,6 +811,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
+      propertyPath: num_drops
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[0].Chance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[0].Weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[1].Chance
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[1].Weight
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[0].probabilityRangeTo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityRangeTo
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityRangeFrom
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2111468785116459365, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.37
@@ -879,3 +968,4 @@ SceneRoots:
   - {fileID: 528787583}
   - {fileID: 1017744637}
   - {fileID: 752959456}
+  - {fileID: 966406836655082312}
