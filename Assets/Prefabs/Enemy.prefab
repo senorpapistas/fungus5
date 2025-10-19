@@ -673,17 +673,27 @@ MonoBehaviour:
   moneyValue: 10
   lootDropTable:
     lootDropItems:
-    - item: {fileID: 4529491272055937221, guid: da66fa8c27b0fd94bb06a8cd9ea25134, type: 3}
-      Weight: 20
-      Chance: 20
+    - item: {fileID: 1777377448550061215, guid: 9c73233e10d5b024baa0fd84342d4ff3, type: 3}
+      Weight: 10
+      Chance: 10
       probabilityRangeFrom: 0
-      probabilityRangeTo: 20
-    - item: {fileID: 8400530084364778275, guid: a3abf6f5ea281374883d0dc454852261, type: 3}
-      Weight: 80
-      Chance: 80
-      probabilityRangeFrom: 20
+      probabilityRangeTo: 10
+    - item: {fileID: 151756822471319201, guid: 5494d98d47d10ba479ca335d9385ff2e, type: 3}
+      Weight: 30
+      Chance: 30
+      probabilityRangeFrom: 10
+      probabilityRangeTo: 40
+    - item: {fileID: 8482183276256340305, guid: 7752617073b188a46998aec2d2501584, type: 3}
+      Weight: 30
+      Chance: 30
+      probabilityRangeFrom: 40
+      probabilityRangeTo: 70
+    - item: {fileID: 9201058025889427319, guid: 3a6ef659d961c9b438202dc581e4e43e, type: 3}
+      Weight: 30
+      Chance: 30
+      probabilityRangeFrom: 70
       probabilityRangeTo: 100
-  num_drops: 1
+  num_drops: 2
   atkHB: {fileID: 1250168595852165944}
   atkCD: 0
 --- !u!114 &7427392085740938963

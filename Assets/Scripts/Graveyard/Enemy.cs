@@ -100,7 +100,10 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
     {
         // Resume enemy movement
         isStunned = false;
-        StopCoroutine(stunCR);
+        if (stunCR != null)
+        {
+            StopCoroutine(stunCR);
+        }
     }
 
     public void Move(Vector3 direction)
