@@ -34,4 +34,9 @@ public class UpgradeManager : MonoBehaviour
         }
         return null;
     }
+
+    public IEnumerable<Upgrade> GetAllUpgrades()
+    {
+        return upgrades.Values;
+    }
 }

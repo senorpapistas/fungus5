@@ -17,54 +17,54 @@ public class GameUpgrades : MonoBehaviour
     {
         var flashlightRangeUpg = new Upgrade(
             "Flashlight Range",
-            basePrice: 0,
-            rate: 1f,
-            growth: 1f
+            basePrice: 10,
+            rate: 1.5f,
+            growth: 1.3f
         );
         flashlightRangeUpg.OnUpgradePurchased += () => UpgradeEvents.OnFlashRangeInc(1f);
         UpgradeManager.Instance.RegisterUpgrade(flashlightRangeUpg);
 
         var flashlightAngleUpg = new Upgrade(
             "Flashlight Angle",
-            basePrice: 0,
-            rate: 1f,
-            growth: 1f
+            basePrice: 10,
+            rate: 1.5f,
+            growth: 1.3f
         );
         flashlightAngleUpg.OnUpgradePurchased += () => UpgradeEvents.OnFlashAngleInc(1f);
         UpgradeManager.Instance.RegisterUpgrade(flashlightAngleUpg);
 
         var flashlightDmgUpg = new Upgrade(
             "Flashlight Damage",
-            basePrice: 0,
-            rate: 1f,
-            growth: 1f
+            basePrice: 300,
+            rate: 1.5f,
+            growth: 1.3f
         );
         flashlightDmgUpg.OnUpgradePurchased += () => UpgradeEvents.OnFlashDmgInc(1f);
         UpgradeManager.Instance.RegisterUpgrade(flashlightDmgUpg);
 
         var playerMSUpg = new Upgrade(
             "Player Movespeed",
-            basePrice: 0,
-            rate: 1f,
-            growth: 1f
+            basePrice: 300,
+            rate: 3.7f,
+            growth: 2f
         );
         playerMSUpg.OnUpgradePurchased += () => UpgradeEvents.OnPlayerMSInc(1f);
         UpgradeManager.Instance.RegisterUpgrade(playerMSUpg);
 
         var moneyGainUpg = new Upgrade(
             "Money Multiplier",
-            basePrice: 0,
-            rate: 1f,
-            growth: 1f
+            basePrice: 2000,
+            rate: 2f,
+            growth: 2.5f
         );
         moneyGainUpg.OnUpgradePurchased += () => UpgradeEvents.OnMoneyMultInc(1f);
         UpgradeManager.Instance.RegisterUpgrade(moneyGainUpg);
 
         var maxEnemySpawnsUpg = new Upgrade(
             "Max Enemy Spawns",
-            basePrice: 0,
-            rate: 1f,
-            growth: 1f
+            basePrice: 300,
+            rate: 1.3f,
+            growth: 2.5f
         );
         maxEnemySpawnsUpg.OnUpgradePurchased += () => UpgradeEvents.OnEnemySpawnInc(1);
         UpgradeManager.Instance.RegisterUpgrade(maxEnemySpawnsUpg);

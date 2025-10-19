@@ -23,7 +23,7 @@ public class Upgrade
 
     public float GetCurrentPrice()
     {
-        return BasePrice * Mathf.Pow(Rate, Growth * AmountOwned);
+        return Mathf.Ceil(BasePrice * Mathf.Pow(Rate, Growth * AmountOwned));
     }
 
     public void Purchase()

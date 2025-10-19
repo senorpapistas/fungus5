@@ -45,7 +45,8 @@ public class EnemySpawner : MonoBehaviour
 
     private Vector3 GetValidSpawnPosition()
     {
-        for (int i = 0; i < 100; i++)
+        // Spawn enemy without spawn distance bounds and in fog of war
+        for (int i = 0; i < 20; i++)
         {
             float angle = Random.Range(0f, 360f);
             float distance = Random.Range(minSpawnDistance, maxSpawnDistance);
@@ -58,7 +59,23 @@ public class EnemySpawner : MonoBehaviour
                 return position;
             }
         }
-        Debug.Log("failed to find a valid spawn position, defaulting to 0");
+        // Assuming flashlight covers nearly the whole map
+        Debug.Log("failed to find a valid spawn position, defaulting to lenient search");
+        // Spawn enemy within flashlight beam if possible, else zero
+        for (int i = 0; i < 20; i++)
+        {
+            float angle = Random.Range(0f, 360f);
+            float distance = Random.Range(minSpawnDistance - 2, maxSpawnDistance + 10);
+            Vector3 offset = Quaternion.Euler(0, angle, 0) * Vector3.forward * distance;
+            Vector3 position = player.position + offset;
+
+            // Check if inside flashlight beam and on valid ground
+            if (IsLenientSpawnPosition(position))
+            {
+                return position;
+            }
+        }
+        Debug.Log("failed to find a lenient spawn position, defaulting to vector 0");
         return Vector3.zero;
     }
 
@@ -68,6 +85,17 @@ public class EnemySpawner : MonoBehaviour
         if (playerFlashlight.IsObjectInBeam(position)) return false;
 
         // Check for ground
+        RaycastHit hit;
+        if (Physics.Raycast(position + Vector3.up * 2, Vector3.down, out hit, 4f, spawnAreaMask))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool IsLenientSpawnPosition(Vector3 position)
+    {
+        // Only check for ground
         RaycastHit hit;
         if (Physics.Raycast(position + Vector3.up * 2, Vector3.down, out hit, 4f, spawnAreaMask))
         {
@@ -100,5 +128,24 @@ public class EnemySpawner : MonoBehaviour
     public void StopSpawning()
     {
         canSpawn = false;
+    }
+
+    private void OnEnable()
+    {
+        UpgradeEvents.EnemySpawnsIncreased += IncreaseSpawn;
+    }
+
+    private void OnDisable()
+    {
+        UpgradeEvents.EnemySpawnsIncreased -= IncreaseSpawn;
+    }
+
+    private void IncreaseSpawn(int amount)
+    {
+        maxEnemies += 1;
+        if (spawnInterval > 0.1f)
+        {
+            spawnInterval -= 0.1f;
+        }
     }
 }

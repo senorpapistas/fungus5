@@ -8,7 +8,7 @@ public class UpgradeEvents
     public static event Action<float> FlashlightAngleIncreased;
     public static event Action<float> FlashlightDamageIncreased;
     public static event Action<float> PlayerMSIncreased;
-    public static event Action<float> MoneyMultiplierIncreased;
+    public static event Action<float> MoneyMultiplierIncreased; // still need to put in PlayerWallet.cs
     public static event Action<int> EnemySpawnsIncreased;
     //public static event Action<float> BombDropsIncreased;
 
