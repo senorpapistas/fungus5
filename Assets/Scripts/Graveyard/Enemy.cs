@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
 
     private Transform player;
     private bool isStunned;
-    private float stunTimer;
+    //private float stunTimer;
     private Vector3 lastPosition;
 
     public static event Action EnemyDeathEvent;
@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
 
     private IEnumerator StunCountdown()
     {
-        stunTimer = 0f;
+        //stunTimer = 0f;
         //while (stunTimer < timeToKill)
         float timer = 0f;
         while (health.currentHealth > 0)
