@@ -127,13 +127,13 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
     {
         if (moneyPrefab != null)
         {
-            GameObject money = Instantiate(moneyPrefab, position, Quaternion.identity); //  + Vector3.up
+            //GameObject money = Instantiate(moneyPrefab, position, Quaternion.identity); //  + Vector3.up
             //Debug.Log($"Enemy killed! Dropping loot at {position + Vector3.up}");
-            Money moneyComponent = money.GetComponent<Money>();
+            /*Money moneyComponent = money.GetComponent<Money>();
             if (moneyComponent != null)
             {
                 moneyComponent.SetValue(moneyValue);
-            }
+            }*/
 
             GenericLootDropItemGameObject drop = lootDropTable.PickLootDropItem();
             GameObject loot = Instantiate(drop.item, position, Quaternion.identity);

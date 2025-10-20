@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Money : MonoBehaviour
 {
-    private float value;
+    [SerializeField] private float value;
 
     public void SetValue(float amount)
     {

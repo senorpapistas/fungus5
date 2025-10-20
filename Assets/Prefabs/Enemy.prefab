@@ -679,19 +679,19 @@ MonoBehaviour:
       probabilityRangeFrom: 0
       probabilityRangeTo: 10
     - item: {fileID: 151756822471319201, guid: 5494d98d47d10ba479ca335d9385ff2e, type: 3}
-      Weight: 30
-      Chance: 30
+      Weight: 10
+      Chance: 10
       probabilityRangeFrom: 10
-      probabilityRangeTo: 40
+      probabilityRangeTo: 20
     - item: {fileID: 8482183276256340305, guid: 7752617073b188a46998aec2d2501584, type: 3}
       Weight: 30
       Chance: 30
-      probabilityRangeFrom: 40
-      probabilityRangeTo: 70
+      probabilityRangeFrom: 20
+      probabilityRangeTo: 50
     - item: {fileID: 9201058025889427319, guid: 3a6ef659d961c9b438202dc581e4e43e, type: 3}
-      Weight: 30
-      Chance: 30
-      probabilityRangeFrom: 70
+      Weight: 50
+      Chance: 50
+      probabilityRangeFrom: 50
       probabilityRangeTo: 100
   num_drops: 2
   atkHB: {fileID: 1250168595852165944}
