@@ -50,7 +50,7 @@ public class Lose : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 
 }

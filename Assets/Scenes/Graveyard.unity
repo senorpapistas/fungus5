@@ -982,7 +982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1593472637
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1054,7 +1054,7 @@ Canvas:
   m_GameObject: {fileID: 1593472636}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1439,25 +1439,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2142644988 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1250168595852165944, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
-  m_PrefabInstance: {fileID: 4583217915525996809}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2142644990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142644988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c862c070f509bc841baec17efa962701, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  damage: 0
-  spitFX: {fileID: 0}
 --- !u!1001 &2144495449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1647,7 +1628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[0].Chance
-      value: 1.4285715
+      value: 1.1111112
       objectReference: {fileID: 0}
     - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[0].Weight
@@ -1655,7 +1636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[1].Chance
-      value: 12.857142
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[1].Weight
@@ -1663,11 +1644,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[2].Chance
-      value: 42.857143
+      value: 33.333332
       objectReference: {fileID: 0}
     - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[3].Chance
-      value: 42.857143
+      value: 55.555557
       objectReference: {fileID: 0}
     - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[0].probabilityRangeTo
@@ -1683,7 +1664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[3].probabilityRangeTo
-      value: 70
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1085386574545535699, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityRangeFrom
@@ -1752,9 +1733,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1212545040458228878, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1434241805}
-    - targetCorrespondingSourceObject: {fileID: 1250168595852165944, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2142644990}
   m_SourcePrefab: {fileID: 100100000, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
 --- !u!1001 &7241256510644365253
 PrefabInstance:

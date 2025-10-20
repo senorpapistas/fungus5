@@ -11,13 +11,13 @@ public class ScreenShake : MonoBehaviour
     private void OnEnable()
     {
         Enemy.EnemyDeathEvent += Shake;
-        PlayerHealth.PlayerChangeHealthEvent += _ => Shake();
+        PlayerHealth.PlayerChangeHealthEvent += Shake2;
     }
 
     private void OnDisable()
     {
         Enemy.EnemyDeathEvent -= Shake;
-        PlayerHealth.PlayerChangeHealthEvent -= _ => Shake();
+        PlayerHealth.PlayerChangeHealthEvent -= Shake2;
     }
 
     private IEnumerator Shaking()
@@ -35,6 +35,17 @@ public class ScreenShake : MonoBehaviour
     }
 
     private void Shake ()
+    {
+        start = true;
+        if (start)
+        {
+            start = false;
+            StopAllCoroutines();
+            StartCoroutine(Shaking());
+        }
+    }
+
+    private void Shake2(int bruh)
     {
         start = true;
         if (start)
