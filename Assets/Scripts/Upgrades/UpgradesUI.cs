@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using System.Collections;
 public class UpgradesUI : MenuClass
 {
     [Header("UI Elements")]
@@ -15,6 +16,24 @@ public class UpgradesUI : MenuClass
     private void Start()
     {
         base.Start();
+
+        StartCoroutine(InitializeUpgUI());
+
+        //foreach (var upgrade in UpgradeManager.Instance.GetAllUpgrades())
+        //{
+        //    CreateUpgradeButton(upgrade);
+        //}
+
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //if (player != null)
+        //{
+        //    playerWallet = player.GetComponent<PlayerWallet>();
+        //}
+    }
+
+    private IEnumerator InitializeUpgUI()
+    {
+        yield return new WaitForEndOfFrame();
         foreach (var upgrade in UpgradeManager.Instance.GetAllUpgrades())
         {
             CreateUpgradeButton(upgrade);
