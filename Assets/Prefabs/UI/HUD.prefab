@@ -179,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthUI
   healthUI: {fileID: 3674757726899992167}
   healthIcon: {fileID: 688117301318142426, guid: 9602fa8f06cd65b4a8c916322c33bb78, type: 3}
+  healthIconList: []
 --- !u!1 &4440072605888176751
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,5 +30,15 @@ public class EnemyHealthbar : MonoBehaviour
         bg.enabled = true;
         healthbar.enabled = true;
         healthbar.fillAmount = (float)enemyHealth.currentHealth / enemyHealth.maxHealth;
+
+        StopAllCoroutines();
+        StartCoroutine(cooldown());
+    }
+
+    IEnumerator cooldown()
+    {
+        yield return new WaitForSeconds(1f);
+        bg.enabled = false;
+        healthbar.enabled = false;
     }
 }
