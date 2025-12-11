@@ -47,6 +47,7 @@ public class ScreenShake : MonoBehaviour
 
     private void Shake(int bruh)
     {
+        Debug.Log("player is hurt!");
         start = true;
         if (start)
         {

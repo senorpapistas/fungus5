@@ -147,6 +147,8 @@ public class Enemy : MonoBehaviour, IMoveable, ILootable
 
             //event call
             EnemyDeathEvent?.Invoke();
+
+            AudioManager.Instance.PlaySound("explosion");
         }
         else
         {

@@ -9,6 +9,7 @@ public class BasicMovement : MonoBehaviour, IMoveable
     private float moveInput;
     private float turnInput;
     private bool canMove = true;
+    public bool moving = false;
 
     private void Start()
     {
@@ -22,6 +23,13 @@ public class BasicMovement : MonoBehaviour, IMoveable
             moveInput = Input.GetAxisRaw("Vertical");
             turnInput = Input.GetAxisRaw("Horizontal");
         }
+
+        if (moveInput > 0 || turnInput > 0)
+        {
+            AudioManager.Instance.PlaySound("footstep");
+        }
+
+
     }
 
     private void FixedUpdate()
