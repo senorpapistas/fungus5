@@ -46,6 +46,8 @@ public class PlayerHealth : MonoBehaviour
             PlayerChangeHealthEvent?.Invoke(currentHealth);
 
             StartInvincibility();
+
+            AudioManager.Instance.PlaySound("meow");
         }
     }
 

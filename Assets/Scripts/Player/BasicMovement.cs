@@ -24,9 +24,15 @@ public class BasicMovement : MonoBehaviour, IMoveable
             turnInput = Input.GetAxisRaw("Horizontal");
         }
 
-        if (moveInput > 0 || turnInput > 0)
+        if (moveInput != 0 || turnInput != 0)
         {
-            AudioManager.Instance.PlaySound("footstep");
+            //AudioManager.Instance.PlaySound("footstep");
+            moving = true;
+            AudioManager.Instance.ToggleSound("footstep");
+        }
+        else
+        {
+            moving = false;
         }
 
 

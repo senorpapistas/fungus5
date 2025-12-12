@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Serialization;
 using UnityEngine;
 
 //flashlight that activates on spacebar hold
@@ -22,6 +23,7 @@ public class Flashlight : MonoBehaviour
     [SerializeField] private bool isOn;
     [SerializeField] public float currentPower;
     [SerializeField] private bool inCooldown;   //when 0 power, flashlight must charge back up until amount whenToStopCooldown is reached
+    private bool soundPlayed;
 
     void Start()
     {
@@ -45,7 +47,12 @@ public class Flashlight : MonoBehaviour
             isOn = false;
         }
 
-        if (isOn && !inCooldown)
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            AudioManager.Instance.PlaySound("flashlight");
+        }
+
+            if (isOn && !inCooldown)
         {
             ConsumePower();
             if (currentPower > 0)
@@ -189,5 +196,4 @@ public class Flashlight : MonoBehaviour
         flashlight.spotAngle += amount;
         detectionRange += amount;
     }
-
 }

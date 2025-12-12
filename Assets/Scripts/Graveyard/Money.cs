@@ -23,6 +23,7 @@ public class Money : MonoBehaviour
             {
                 Debug.Log($"Player has collected money! +{value}");
                 wallet.AddMoney(value);
+                AudioManager.Instance.PlaySound("coin");
                 Destroy(gameObject);
             }
         }

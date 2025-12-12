@@ -28,6 +28,8 @@ public class InteractItem : MonoBehaviour
             {
                 currItem.Throw();
                 currItem = null;
+
+                AudioManager.Instance.PlaySound("whoosh");
             }
         }
     }
@@ -49,6 +51,7 @@ public class InteractItem : MonoBehaviour
                 Debug.Log("big fart incoming");
                 currItem = hitColliders[i].GetComponent<Pickup>();
                 currItem.PickUp(heldPos.transform);
+                AudioManager.Instance.PlaySound("equip");
                 break;
             }
         }
