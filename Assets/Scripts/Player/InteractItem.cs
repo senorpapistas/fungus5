@@ -6,6 +6,9 @@ public class InteractItem : MonoBehaviour
     [SerializeField] private GameObject heldPos;
     [SerializeField] private Pickup currItem;
     Collider[] hitColliders;
+
+    public static event Action<bool> ItemHeldEvent;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,16 +23,15 @@ public class InteractItem : MonoBehaviour
             if (currItem == null)
             {
                 TryPickup();
+                ItemHeldEvent?.Invoke(true);
             }
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (currItem != null)
+            else if (currItem != null)
             {
                 currItem.Throw();
                 currItem = null;
 
                 AudioManager.Instance.PlaySound("whoosh");
+                ItemHeldEvent?.Invoke(false);
             }
         }
     }
