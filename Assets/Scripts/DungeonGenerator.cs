@@ -5,6 +5,7 @@ using Unity.Loading;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 public class Coordinates
@@ -16,12 +17,15 @@ public class Coordinates
 public class DungeonGenerator : MonoBehaviour
 {
     public int size;
-    public int[,] dungeon = new int[10, 10];
+    public int[,] dungeon = new int[10, 10];        //make sure minroomcount IS NOT GREATER THAN size of dungeon or it will create an endless loop
 
     public int roomCount;
+
+    [Header("Generation Settings")]
     public int minRoomCount;
     public int maxRoomCount;
 
+    [Header("Prefab")]
     public GameObject room;
     private Queue<Coordinates> cellQueue = new Queue<Coordinates>();
 
@@ -31,7 +35,17 @@ public class DungeonGenerator : MonoBehaviour
     {
         SetupDungeon();
     }
-    
+
+    /*
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SetupDungeon();
+        }
+    }
+    */
+
     void SetupDungeon()
     {
         for (int i = 0; i < dungeon.GetLength(0); i++)
@@ -62,20 +76,29 @@ public class DungeonGenerator : MonoBehaviour
     {
         while (cellQueue.Count > 0)
         {
-            if (roomCount > 15) { break; }
+            if (roomCount > maxRoomCount) { break; }
 
             Coordinates temp = cellQueue.Dequeue();
-            bool created = false;
 
+            //linear dungeon
+            /*
+            bool created = false;
             if (!created) created = VisitCell(temp.x + 1, temp.y);
             if (!created) created = VisitCell(temp.x - 1, temp.y);
             if (!created) created = VisitCell(temp.x, temp.y + 1);
             if (!created) created = VisitCell(temp.x, temp.y - 1);
+            */
+
+            //complex dungeon
+            VisitCell(temp.x + 1, temp.y);
+            VisitCell(temp.x - 1, temp.y);
+            VisitCell(temp.x, temp.y + 1);
+            VisitCell(temp.x, temp.y - 1);
         }
 
         Debug.Log("finished generating!");
 
-        if (roomCount < 10) { SetupDungeon(); }
+        if (roomCount < minRoomCount) { minRoomCount--;  SetupDungeon(); }      //minroomcount-- to prevent endlessly generating a dungeon that can't be made
     }
 
     bool VisitCell(int x, int y)
@@ -103,29 +126,36 @@ public class DungeonGenerator : MonoBehaviour
     {
         int result = 0;
         Debug.Log("checking neighbors of " + $"{x}" + $",{y}");
+        //x
         if (x == 0)
         {
-            result = dungeon[x + 1, y] + dungeon[x, y + 1] + dungeon[x, y - 1];
+            result += dungeon[x + 1, y];
 
         }
         else if (x == dungeon.GetLength(0)-1)
         {
-            result = dungeon[x - 1, y] + dungeon[x, y + 1] + dungeon[x, y - 1];
-
-        }
-        else if (y == 0)
-        {
-            result = dungeon[x + 1, y] + dungeon[x - 1, y] + dungeon[x, y + 1];
-
-        }
-        else if (y == dungeon.GetLength(1) - 1)
-        {
-            result = dungeon[x + 1, y] + dungeon[x - 1, y] + dungeon[x, y - 1];
+            result += dungeon[x - 1, y];
 
         }
         else
         {
-            result = dungeon[x + 1, y] + dungeon[x - 1, y] + dungeon[x, y + 1] + dungeon[x, y - 1];
+            result += dungeon[x + 1, y] + dungeon[x - 1, y];
+        }
+
+        //y
+        if (y == 0)
+        {
+            result += dungeon[x, y + 1];
+
+        }
+        else if (y == dungeon.GetLength(1) - 1)
+        {
+            result += dungeon[x, y - 1];
+
+        }
+        else
+        {
+            result += dungeon[x, y + 1] + dungeon[x, y - 1];
         }
 
         return result;

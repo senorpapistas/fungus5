@@ -722,7 +722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &584892417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,8 +737,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DungeonGenerator
   size: 2
   roomCount: 0
-  minRoomCount: 0
-  maxRoomCount: 0
+  minRoomCount: 10
+  maxRoomCount: 15
   room: {fileID: 893376942}
   rooms: []
 --- !u!4 &584892418
@@ -1136,7 +1136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &893376943
 BoxCollider:
   m_ObjectHideFlags: 0
