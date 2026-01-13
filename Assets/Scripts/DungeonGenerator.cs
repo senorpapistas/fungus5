@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Unity.Cinemachine;
+using Unity.Loading;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -17,6 +19,7 @@ public class DungeonGenerator : MonoBehaviour
     public int[,] dungeon = new int[10, 10];
 
     public int roomCount;
+    public int minRoomCount;
     public int maxRoomCount;
 
     public GameObject room;
@@ -61,18 +64,18 @@ public class DungeonGenerator : MonoBehaviour
         {
             if (roomCount > 15) { break; }
 
-            Coordinates noob = cellQueue.Dequeue();
+            Coordinates temp = cellQueue.Dequeue();
             bool created = false;
 
-            if (!created) created = VisitCell(noob.x + 1, noob.y);
-            if (!created) created = VisitCell(noob.x - 1, noob.y);
-            if (!created) created = VisitCell(noob.x, noob.y + 1);
-            if (!created) created = VisitCell(noob.x, noob.y - 1);
+            if (!created) created = VisitCell(temp.x + 1, temp.y);
+            if (!created) created = VisitCell(temp.x - 1, temp.y);
+            if (!created) created = VisitCell(temp.x, temp.y + 1);
+            if (!created) created = VisitCell(temp.x, temp.y - 1);
         }
 
         Debug.Log("finished generating!");
 
-        if (roomCount < 5) { SetupDungeon(); }
+        if (roomCount < 10) { SetupDungeon(); }
     }
 
     bool VisitCell(int x, int y)
