@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
     public float minSpawnDistance = 10f;
     public float maxSpawnDistance = 30f;
     public int maxEnemies = 5;
+    public int enemiesSpawned = 0;
+    public int totalEnemiesToSpawn = 5;
     public float spawnInterval = 1f;
     public LayerMask spawnAreaMask;
 
@@ -37,6 +40,12 @@ public class EnemySpawner : MonoBehaviour
                 if (spawnPosition != Vector3.zero)
                 {
                     SpawnEnemy(spawnPosition);
+                }
+
+                if (enemiesSpawned == totalEnemiesToSpawn)
+                {
+                    Debug.Log("stopped spawning");
+                    yield break;
                 }
             }
             yield return new WaitForSeconds(spawnInterval);
@@ -111,6 +120,7 @@ public class EnemySpawner : MonoBehaviour
         if (enemy != null)
         {
             activeEnemies.Add(enemy);
+            enemiesSpawned++;
             StartCoroutine(MonitorEnemy(enemy));
         }
     }

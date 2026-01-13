@@ -23,7 +23,6 @@ public class InteractItem : MonoBehaviour
             if (currItem == null)
             {
                 TryPickup();
-                ItemHeldEvent?.Invoke(true);
             }
             else if (currItem != null)
             {
@@ -50,10 +49,10 @@ public class InteractItem : MonoBehaviour
             Debug.Log(hitColliders[i].gameObject.name);
             if (hitColliders[i].GetComponent<Pickup>() != null)
             {
-                Debug.Log("big fart incoming");
                 currItem = hitColliders[i].GetComponent<Pickup>();
                 currItem.PickUp(heldPos.transform);
                 AudioManager.Instance.PlaySound("equip");
+                ItemHeldEvent?.Invoke(true);
                 break;
             }
         }
@@ -81,10 +80,8 @@ public class InteractItem : MonoBehaviour
     {
         if (collision.transform.tag == "Item")
         {
-            Debug.Log("mmfgh");
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("this worked");
                 collision.transform.SetParent(heldPos.transform, false);
             }
         }
@@ -94,10 +91,8 @@ public class InteractItem : MonoBehaviour
     {
         if (collision.transform.tag == "Item")
         {
-            Debug.Log("sog assy mmmm");
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("what");
                 //collision.transform.SetParent(heldPos.transform, false);
             }
         }
