@@ -12,6 +12,12 @@ public class Coordinates
 {
     public int x;
     public int y;
+
+    public Coordinates(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
 }
 
 public class DungeonGenerator : MonoBehaviour
@@ -23,20 +29,26 @@ public class DungeonGenerator : MonoBehaviour
 
     [Header("Generation Settings")]
     public int minRoomCount;
+    private int tempMinRoomCount;
     public int maxRoomCount;
 
     [Header("Prefab")]
     public GameObject room;
-    private Queue<Coordinates> cellQueue = new Queue<Coordinates>();
 
+    private Queue<Coordinates> cellQueue = new Queue<Coordinates>();
     public List<GameObject> rooms = new List<GameObject>();
+    public List<Coordinates> endRooms = new List<Coordinates>();
+
+    public List<GameObject> endRoomGameobjects = new List<GameObject>();
 
     private void Start()
     {
+        tempMinRoomCount = minRoomCount;
+
         SetupDungeon();
     }
 
-    /*
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -44,7 +56,7 @@ public class DungeonGenerator : MonoBehaviour
             SetupDungeon();
         }
     }
-    */
+    
 
     void SetupDungeon()
     {
@@ -61,6 +73,8 @@ public class DungeonGenerator : MonoBehaviour
             Destroy(temp);
         }
         rooms.Clear();
+        endRooms.Clear();
+        endRoomGameobjects.Clear();
         roomCount = 0;
 
         cellQueue.Clear();
@@ -76,13 +90,14 @@ public class DungeonGenerator : MonoBehaviour
     {
         while (cellQueue.Count > 0)
         {
-            if (roomCount > maxRoomCount) { break; }
+            //if (roomCount > maxRoomCount) { break; }
 
             Coordinates temp = cellQueue.Dequeue();
 
+            bool created = false;
+
             //linear dungeon
             /*
-            bool created = false;
             if (!created) created = VisitCell(temp.x + 1, temp.y);
             if (!created) created = VisitCell(temp.x - 1, temp.y);
             if (!created) created = VisitCell(temp.x, temp.y + 1);
@@ -90,16 +105,48 @@ public class DungeonGenerator : MonoBehaviour
             */
 
             //complex dungeon
-            VisitCell(temp.x + 1, temp.y);
-            VisitCell(temp.x - 1, temp.y);
-            VisitCell(temp.x, temp.y + 1);
-            VisitCell(temp.x, temp.y - 1);
+            created |= VisitCell(temp.x + 1, temp.y);
+            created |= VisitCell(temp.x - 1, temp.y);
+            created |= VisitCell(temp.x, temp.y + 1);
+            created |= VisitCell(temp.x, temp.y - 1);
+
+            Debug.Log($"queue is processing {temp.x},{temp.y}, created is {created}");
+
+            if (created == false) { Debug.Log("endroom is " + temp.x + " " + temp.y); endRooms.Add(new Coordinates(temp.x, temp.y)); }
         }
 
-        Debug.Log("finished generating!");
+        if (roomCount < minRoomCount) { Debug.Log("generation failed. restarting with 1 less room..."); tempMinRoomCount--;  SetupDungeon(); return; }      //tempminroomcount-- to prevent endlessly generating a dungeon that can't be made
 
-        if (roomCount < minRoomCount) { minRoomCount--;  SetupDungeon(); }      //minroomcount-- to prevent endlessly generating a dungeon that can't be made
+        GenerateEndRooms();
+
+        Debug.Log($"Finished Generating with room count of {roomCount}!");
+        tempMinRoomCount = minRoomCount;
     }
+
+    
+    void GenerateEndRooms()
+    {
+        foreach (var room in endRooms)
+        {
+            string name = $"{room.x}" + $",{room.y}";
+            Debug.Log("generateendrooms looking for " + name);
+
+            GameObject endRoom = null;
+            foreach(var temp in rooms)
+            {
+                if (temp.name == name) { endRoom = temp; }
+            }
+
+            if (endRoom != null)
+            {
+                Debug.Log(name + " has been found");
+                endRoomGameobjects.Add(endRoom);
+                endRoom.name += " ENDROOM";
+                endRoom.GetComponent<Renderer>().material.color = Color.green;
+            }
+        }
+    }
+    
 
     bool VisitCell(int x, int y)
     {
@@ -115,9 +162,9 @@ public class DungeonGenerator : MonoBehaviour
         dungeon[x, y] = 1;
         SpawnRoom(x, y);
 
-        Coordinates bruh = new Coordinates();
-        bruh.x = x; bruh.y = y;
-        cellQueue.Enqueue(bruh);
+        Coordinates temp = new Coordinates(x,y);
+        cellQueue.Enqueue(temp);
+        //Debug.Log($"put {x},{y} in queue");
 
         return true;
     }
@@ -165,6 +212,7 @@ public class DungeonGenerator : MonoBehaviour
     {
         Vector3 position = new Vector3(x * size, 0, y * size) + transform.position;
         GameObject newRoom = Instantiate(room, position, quaternion.identity);
+        newRoom.SetActive(true);
         newRoom.name = $"{x}" + $",{y}";
         rooms.Add(newRoom);
     }
