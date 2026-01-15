@@ -35,6 +35,7 @@ public class DungeonGenerator : MonoBehaviour
     [Header("Prefab")]
     public GameObject room;
 
+    [Header("Room Lists")]
     private Queue<Coordinates> cellQueue = new Queue<Coordinates>();
     public List<GameObject> rooms = new List<GameObject>();
     public List<Coordinates> endRooms = new List<Coordinates>();
@@ -72,12 +73,12 @@ public class DungeonGenerator : MonoBehaviour
         {
             Destroy(temp);
         }
+
+        roomCount = 0;
+        cellQueue.Clear();
         rooms.Clear();
         endRooms.Clear();
         endRoomGameobjects.Clear();
-        roomCount = 0;
-
-        cellQueue.Clear();
 
         VisitCell(4, 4);
 
@@ -90,8 +91,6 @@ public class DungeonGenerator : MonoBehaviour
     {
         while (cellQueue.Count > 0)
         {
-            //if (roomCount > maxRoomCount) { break; }
-
             Coordinates temp = cellQueue.Dequeue();
 
             bool created = false;
@@ -150,6 +149,7 @@ public class DungeonGenerator : MonoBehaviour
 
     bool VisitCell(int x, int y)
     {
+        if (roomCount >= maxRoomCount) { return false; }
         if (x < 0 || y < 0) { return false; }
         if (x >= dungeon.GetLength(0) || y >= dungeon.GetLength(1) || UnityEngine.Random.value <.50f) { return false; }
 
@@ -193,12 +193,10 @@ public class DungeonGenerator : MonoBehaviour
         if (y == 0)
         {
             result += dungeon[x, y + 1];
-
         }
         else if (y == dungeon.GetLength(1) - 1)
         {
             result += dungeon[x, y - 1];
-
         }
         else
         {
