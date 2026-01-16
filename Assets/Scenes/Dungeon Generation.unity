@@ -119,6 +119,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &252451457 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1995165004501611955, guid: 77eeb7d387f2013448baa281e8a0f8c7, type: 3}
+  m_PrefabInstance: {fileID: 1067669864}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &252451462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252451457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d976a250c6a3f4ca0b325e6732d6b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Room
+  coordinates:
+    x: 0
+    y: 0
+  roomType: 0
 --- !u!1 &713597467
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +319,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6562146120835068250, guid: 77eeb7d387f2013448baa281e8a0f8c7, type: 3}
+      propertyPath: room
+      value: 
+      objectReference: {fileID: 252451462}
+    - target: {fileID: 6562146120835068250, guid: 77eeb7d387f2013448baa281e8a0f8c7, type: 3}
+      propertyPath: roomPrefab
+      value: 
+      objectReference: {fileID: 252451462}
     - target: {fileID: 6951321876647922128, guid: 77eeb7d387f2013448baa281e8a0f8c7, type: 3}
       propertyPath: m_Name
       value: Dungeon Generator
@@ -313,7 +342,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1995165004501611955, guid: 77eeb7d387f2013448baa281e8a0f8c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 252451462}
   m_SourcePrefab: {fileID: 100100000, guid: 77eeb7d387f2013448baa281e8a0f8c7, type: 3}
 --- !u!1 &1855475303
 GameObject:
