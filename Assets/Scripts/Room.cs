@@ -8,6 +8,8 @@ public class Room : MonoBehaviour
     public Coordinates coordinates;
     public RoomType roomType;
 
+    public Renderer[] childArray;
+
     public void SetupRoom(Coordinates _coordinates, RoomType _roomType)
     {
         coordinates = _coordinates;
@@ -16,21 +18,36 @@ public class Room : MonoBehaviour
         name = $"{coordinates.x}" + $",{coordinates.y}";
         gameObject.SetActive(true);
 
-        switch(roomType)
+        childArray = GetComponentsInChildren<Renderer>();
+
+        switch (roomType)
         {
             case RoomType.Normal:
                 break;
             case RoomType.End:
                 name += " ENDROOM";
                 gameObject.GetComponent<Renderer>().material.color = Color.green;
+                foreach(Renderer child in childArray)
+                {
+                    child.material.color = Color.green;
+                }
                 break;
             case RoomType.Exit:
                 name += " EXIT";
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
+                foreach (Renderer child in childArray)
+                {
+                    child.material.color = Color.red;
+                }
+
                 break;
             case RoomType.Shop:
                 name += " SHOP";
                 gameObject.GetComponent<Renderer>().material.color = Color.orange;
+                foreach (Renderer child in childArray)
+                {
+                    child.material.color = Color.orange;
+                }
                 break;
         }
     }

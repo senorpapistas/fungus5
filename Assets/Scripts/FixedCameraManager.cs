@@ -24,7 +24,7 @@ public class FixedCameraManager : MonoBehaviour
     {
         if (currentCameraBounds == null)
         {
-            print("Need a Camera!");
+            //print("Need a Camera!");
         }
         else
         {

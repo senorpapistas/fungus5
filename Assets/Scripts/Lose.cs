@@ -8,7 +8,6 @@ public class Lose : MonoBehaviour
     public Flashlight flashlight;
     public GameObject playerModel;
     public GameObject loseScreen;
-    public ScreenShake screenShake;
 
     private void OnEnable()
     {
@@ -45,7 +44,6 @@ public class Lose : MonoBehaviour
         playerHealth.enabled = false;
         basicmovement.enabled = false;
         flashlight.enabled = false;
-        screenShake.enabled = false;
         playerModel.SetActive(false);
         loseScreen.SetActive(true);
     }
