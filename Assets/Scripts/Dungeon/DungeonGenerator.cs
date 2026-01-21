@@ -22,12 +22,12 @@ public class Coordinates
 
 public class DungeonGenerator : MonoBehaviour
 {
-    public int size;
     public int[,] dungeon = new int[10, 10];        //make sure minroomcount IS NOT GREATER THAN size of dungeon or it will create an endless loop
 
     public int roomCount;
 
     [Header("Generation Settings")]
+    public int roomGap;     //gap between rooms
     public int minRoomCount;
     private int tempMinRoomCount;
     public int maxRoomCount;
@@ -37,12 +37,16 @@ public class DungeonGenerator : MonoBehaviour
 
     private Queue<Room> cellQueue = new Queue<Room>();
 
-    [Header("Room Lists")]
+    [Header("Generated Room Results")]
     public List<Room> rooms = new List<Room>();
     public List<Room> endRooms = new List<Room>();
 
+    public Room startRoom;
     public Room exitRoom;
     public Room shopRoom;
+
+    [Header("Other")]
+    public GameObject player;
 
     private void Start()
     {
@@ -79,12 +83,11 @@ public class DungeonGenerator : MonoBehaviour
         roomCount = 0;
         cellQueue.Clear();
         rooms.Clear();
-        //roomGameObjects.Clear();
         endRooms.Clear();
-        //endRoomGameObjects.Clear();
 
         if (exitRoom != null) {Destroy(exitRoom); exitRoom = null; }
         if (shopRoom != null) { Destroy(shopRoom); shopRoom = null; }
+        if (startRoom != null) {shopRoom = null; }
 
         VisitCell(4, 4);
 
@@ -131,17 +134,20 @@ public class DungeonGenerator : MonoBehaviour
         GenerateEndRooms();
         GenerateExitRoom();
         GenerateShopRoom();
+        GenerateDoors();
 
         Debug.Log($"Finished Generating with room count of {roomCount}!");
         tempMinRoomCount = minRoomCount;
-    }
 
-    
+        startRoom = rooms[0];
+        PlacePlayer();
+    }
+        
     void GenerateEndRooms()
     {
         foreach (Room room in endRooms)
         {
-            room.SetupRoom(room.coordinates, RoomType.End);
+            room.SetupRoom(room.coordinates, RoomType.End, this);
         }
     }
 
@@ -153,7 +159,7 @@ public class DungeonGenerator : MonoBehaviour
 
         endRooms.Remove(exitRoom);
 
-        exitRoom.SetupRoom(exitRoom.coordinates, RoomType.Exit);
+        exitRoom.SetupRoom(exitRoom.coordinates, RoomType.Exit, this);
     }
 
     void GenerateShopRoom()
@@ -164,9 +170,24 @@ public class DungeonGenerator : MonoBehaviour
 
         endRooms.Remove(shopRoom);
 
-        shopRoom.SetupRoom(shopRoom.coordinates, RoomType.Shop);
+        shopRoom.SetupRoom(shopRoom.coordinates, RoomType.Shop, this);
     }
-    
+
+    void GenerateDoors()
+    {
+        foreach (Room room in rooms)
+        {
+            room.SetupDoors(dungeon);
+        }
+    }
+
+    void PlacePlayer()
+    {
+        if (player != null)
+        {
+            player.transform.position = startRoom.transform.position + new Vector3(0, 1f, 0);
+        }
+    }
 
     bool VisitCell(int x, int y)
     {
@@ -228,9 +249,9 @@ public class DungeonGenerator : MonoBehaviour
 
     Room SpawnRoom(int x, int y)
     {
-        Vector3 position = new Vector3(x * size, 0, y * size) + transform.position;
+        Vector3 position = new Vector3(x * (roomPrefab.planeMesh.bounds.size.x + roomGap), 0, y * (roomPrefab.planeMesh.bounds.size.z + roomGap)) + transform.position;
         Room newRoom = Instantiate(roomPrefab, position, quaternion.identity);
-        newRoom.SetupRoom(new Coordinates(x, y), RoomType.Normal);
+        newRoom.SetupRoom(new Coordinates(x, y), RoomType.Normal, this);
         rooms.Add(newRoom);
         return newRoom;
     }
