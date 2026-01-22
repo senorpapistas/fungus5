@@ -47,6 +47,7 @@ public class DungeonGenerator : MonoBehaviour
 
     [Header("Other")]
     public GameObject player;
+    public static event Action DungeonGeneratedEvent;
 
     private void Start()
     {
@@ -141,6 +142,7 @@ public class DungeonGenerator : MonoBehaviour
 
         startRoom = rooms[0];
         PlacePlayer();
+        DungeonGeneratedEvent.Invoke();
     }
         
     void GenerateEndRooms()
