@@ -1852,7 +1852,7 @@ Transform:
   m_GameObject: {fileID: 81172982}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.03419226, y: -0.5226972, z: 28.711903}
+  m_LocalPosition: {x: 0.03419226, y: -0.5226972, z: 26.7119}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3897,6 +3897,7 @@ MonoBehaviour:
     x: 0
     y: 0
   roomType: 0
+  cleared: 0
   planeMesh: {fileID: 0}
   walls: []
   doors: []
@@ -4604,7 +4605,7 @@ Transform:
   m_GameObject: {fileID: 291167680}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.034192264, y: -0.5226972, z: 28.711903}
+  m_LocalPosition: {x: 0.034192264, y: -0.5226972, z: 26.7119}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5779,13 +5780,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382014407}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 0.034193043, y: -0.5226972, z: 28.71191}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.00000020861623}
+  m_LocalPosition: {x: 0.03419304, y: -0.5226972, z: 26.71191}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 611404395}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &382014409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7044,8 +7045,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 492550741}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.034193043, y: -0.5226972, z: 28.71191}
+  m_LocalRotation: {x: -0, y: 0.00000020861623, z: -0, w: 1}
+  m_LocalPosition: {x: 0.034193043, y: -0.5226972, z: 26.71191}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10517,7 +10518,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1819466133}
         m_TargetAssemblyTypeName: DungeonPlayerTracker, Assembly-CSharp
-        m_MethodName: OpenRoom
+        m_MethodName: ClearCurrentRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11549,6 +11550,10 @@ PrefabInstance:
     - target: {fileID: 7507410364612866108, guid: 53a43065490b56d468f1f24436744245, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164735039633033440, guid: 53a43065490b56d468f1f24436744245, type: 3}
+      propertyPath: moveSpeed
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14839,6 +14844,7 @@ MonoBehaviour:
     x: 0
     y: 0
   roomType: 0
+  cleared: 0
   planeMesh: {fileID: 8063231295110116147}
   walls:
   - {fileID: 674934801}
@@ -17460,7 +17466,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Open room
+  m_text: Clear room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

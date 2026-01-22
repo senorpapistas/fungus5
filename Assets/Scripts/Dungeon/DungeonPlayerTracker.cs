@@ -7,13 +7,13 @@ public class DungeonPlayerTracker : MonoBehaviour
 
     private void OnEnable()
     {
-        DoorTrigger.DoorEnterEvent += ChangePlayerLocation;
+        DoorTrigger.DoorEnterEvent += ChangeCurrentRoom;
         DungeonGenerator.DungeonGeneratedEvent += ResetDungeon;
     }
 
     private void OnDisable()
     {
-        DoorTrigger.DoorEnterEvent -= ChangePlayerLocation;
+        DoorTrigger.DoorEnterEvent -= ChangeCurrentRoom;
         DungeonGenerator.DungeonGeneratedEvent -= ResetDungeon;
     }
 
@@ -31,16 +31,22 @@ public class DungeonPlayerTracker : MonoBehaviour
 
     void ResetDungeon()
     {
-        ChangePlayerLocation(dungeonGenerator.startRoom);
+        ChangeCurrentRoom(dungeonGenerator.startRoom);
     }
 
-    void ChangePlayerLocation(Room room)
+    void ChangeCurrentRoom(Room room)
     {
+        if (currentRoom != room) { Debug.Log("Player entered new room"); }
         currentRoom = room;
     }
 
-    public void OpenRoom()
+    public void OpenCurrentRoom()
     {
         currentRoom.OpenDoors();
+    }
+
+    public void ClearCurrentRoom()
+    {
+        currentRoom.ClearRoom();
     }
 }

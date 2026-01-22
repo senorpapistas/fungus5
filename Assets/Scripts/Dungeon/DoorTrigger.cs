@@ -11,8 +11,8 @@ public class DoorTrigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("player entered");
             DoorEnterEvent?.Invoke(room);
+            room.CloseRoom();
         }
     }
 }

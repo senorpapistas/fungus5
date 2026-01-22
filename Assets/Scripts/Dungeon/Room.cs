@@ -11,6 +11,7 @@ public class Room : MonoBehaviour
     [Header("Room Data")]
     public Coordinates coordinates;
     public RoomType roomType;
+    public bool cleared;
 
     [Space(10)]
     [Header("Mesh")]
@@ -159,7 +160,28 @@ public class Room : MonoBehaviour
         }
     }
 
+    //call when player enters new room
+    public void CloseRoom()
+    {
+        if (!cleared)
+        {
+            if (roomType == RoomType.Exit || roomType == RoomType.Shop)
+            {
+                ClearRoom();
+            }
+            else
+            {
+                CloseDoors();
+            }
+        }
+    }
 
+    //call when room is cleared
+    public void ClearRoom()
+    {
+        cleared = true;
+        OpenDoors();
+    }
 }
 
 
