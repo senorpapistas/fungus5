@@ -722,7 +722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   currentHealth: 0
-  maxHealth: 100
+  maxHealth: 20
 --- !u!1001 &2022884361260603871
 PrefabInstance:
   m_ObjectHideFlags: 0

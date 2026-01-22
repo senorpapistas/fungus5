@@ -388,6 +388,7 @@ MonoBehaviour:
   playerFlashlight: {fileID: 0}
   minSpawnDistance: 15
   maxSpawnDistance: 40
+  room: {fileID: 0}
   maxEnemies: 5
   enemiesSpawned: 0
   totalEnemiesToSpawn: 15
@@ -395,6 +396,7 @@ MonoBehaviour:
   spawnAreaMask:
     serializedVersion: 2
     m_Bits: 512
+  finishedSpawning: 0
 --- !u!4 &528787583
 Transform:
   m_ObjectHideFlags: 0

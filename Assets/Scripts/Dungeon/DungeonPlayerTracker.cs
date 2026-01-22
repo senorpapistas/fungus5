@@ -40,11 +40,6 @@ public class DungeonPlayerTracker : MonoBehaviour
         currentRoom = room;
     }
 
-    public void OpenCurrentRoom()
-    {
-        currentRoom.OpenDoors();
-    }
-
     public void ClearCurrentRoom()
     {
         currentRoom.ClearRoom();

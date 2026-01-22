@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
+    public DungeonPlayerTracker dungeonPlayerTracker;   //may need to decouple;
     public Room room;
     public static event Action<Room> DoorEnterEvent;
 
@@ -11,8 +12,11 @@ public class DoorTrigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            DoorEnterEvent?.Invoke(room);
-            room.CloseRoom();
+            if (room != dungeonPlayerTracker.currentRoom)
+            {
+                DoorEnterEvent?.Invoke(room);
+                room.CloseRoom();
+            }
         }
     }
 }

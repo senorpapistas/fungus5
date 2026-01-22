@@ -2,25 +2,39 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
+using Unity.VisualScripting;
 
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public Transform player;
     public Flashlight playerFlashlight;
+
+    [Header("Spawn Distances")]
     public float minSpawnDistance = 10f;
     public float maxSpawnDistance = 30f;
+    public Room room;
+
+    [Header("Spawn Settings")]
     public int maxEnemies = 5;
     public int enemiesSpawned = 0;
     public int totalEnemiesToSpawn = 5;
     public float spawnInterval = 1f;
     public LayerMask spawnAreaMask;
 
-    private List<Enemy> activeEnemies = new List<Enemy>();
-    private bool canSpawn = true;
+    public List<Enemy> activeEnemies = new List<Enemy>();
+
+    [Header("States")]
+    public bool canSpawn = true;
+    public bool finishedSpawning = false;
 
     private void Start()
     {
+        if (room)
+        {
+            maxSpawnDistance = room.planeMesh.bounds.size.x/2 - room.planeMesh.bounds.size.x*.2f;
+        }
+
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
         
@@ -28,6 +42,21 @@ public class EnemySpawner : MonoBehaviour
             playerFlashlight = player.GetComponentInChildren<Flashlight>();
 
         StartCoroutine(SpawnRoutine());
+    }
+
+    public void StartSpawn()
+    {
+        canSpawn = true;
+        StartCoroutine(SpawnRoutine());
+    }
+
+    private void Update()
+    {
+        if (finishedSpawning && activeEnemies.Count == 0 && room)
+        {
+            room.ClearRoom();
+            this.gameObject.SetActive(false);
+        }
     }
 
     private IEnumerator SpawnRoutine()
@@ -45,6 +74,8 @@ public class EnemySpawner : MonoBehaviour
                 if (enemiesSpawned == totalEnemiesToSpawn)
                 {
                     Debug.Log("stopped spawning");
+
+                    finishedSpawning = true;
                     yield break;
                 }
             }
@@ -60,7 +91,9 @@ public class EnemySpawner : MonoBehaviour
             float angle = Random.Range(0f, 360f);
             float distance = Random.Range(minSpawnDistance, maxSpawnDistance);
             Vector3 offset = Quaternion.Euler(0, angle, 0) * Vector3.forward * distance;
+
             Vector3 position = player.position + offset;
+            if (room) { position = new Vector3 (room.transform.position.x, player.position.y, room.transform.position.z) + offset; }
 
             // Check if inside flashlight beam and on valid ground
             if (IsValidSpawnPosition(position))
@@ -148,6 +181,11 @@ public class EnemySpawner : MonoBehaviour
     private void OnDisable()
     {
         UpgradeEvents.EnemySpawnsIncreased -= IncreaseSpawn;
+
+        foreach (Enemy enemy in activeEnemies)
+        {
+            Destroy(enemy);
+        }
     }
 
     private void IncreaseSpawn(int amount)

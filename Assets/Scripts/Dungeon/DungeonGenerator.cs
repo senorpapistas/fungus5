@@ -59,7 +59,7 @@ public class DungeonGenerator : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             SetupDungeon();
         }
@@ -141,6 +141,7 @@ public class DungeonGenerator : MonoBehaviour
         tempMinRoomCount = minRoomCount;
 
         startRoom = rooms[0];
+        startRoom.SetupRoom(startRoom.coordinates, RoomType.Start, this);
         PlacePlayer();
         DungeonGeneratedEvent.Invoke();
     }

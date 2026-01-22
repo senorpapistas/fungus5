@@ -1,7 +1,8 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum RoomType {Normal,End,Exit,Shop}
+public enum RoomType {Normal,Start,End,Exit,Shop}
 
 [System.Serializable]
 public class Room : MonoBehaviour
@@ -25,6 +26,10 @@ public class Room : MonoBehaviour
     public List<Door> doors = new List<Door>();
     public List<Door> activeDoors = new List<Door>();
 
+    [Header("Enemy Spawner")]
+    public EnemySpawner enemySpawner;
+
+    [Header("Dev")]
     public bool open;
     public bool close;
 
@@ -50,6 +55,9 @@ public class Room : MonoBehaviour
         switch (roomType)
         {
             case RoomType.Normal:
+                break;
+            case RoomType.Start:
+                ClearRoom();
                 break;
             case RoomType.End:
                 name += " ENDROOM";
@@ -115,7 +123,7 @@ public class Room : MonoBehaviour
     }
     #endregion
 
-    public void OpenDoors()
+    private void OpenDoors()
     {
         foreach(Door door in activeDoors)
         {
@@ -152,7 +160,7 @@ public class Room : MonoBehaviour
 
     }
 
-    public void CloseDoors()
+    private void CloseDoors()
     {
         foreach (Door door in activeDoors)
         {
@@ -172,6 +180,7 @@ public class Room : MonoBehaviour
             else
             {
                 CloseDoors();
+                enemySpawner.StartSpawn();
             }
         }
     }

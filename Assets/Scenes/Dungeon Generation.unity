@@ -1870,6 +1870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d5287106a04424b86292e0ea996cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
+  dungeonPlayerTracker: {fileID: 1819466133}
   room: {fileID: 1198902106}
 --- !u!65 &81172985
 BoxCollider:
@@ -3902,6 +3903,7 @@ MonoBehaviour:
   walls: []
   doors: []
   activeDoors: []
+  enemySpawner: {fileID: 0}
   open: 0
   close: 0
 --- !u!1 &255196676
@@ -4623,6 +4625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d5287106a04424b86292e0ea996cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
+  dungeonPlayerTracker: {fileID: 1819466133}
   room: {fileID: 1198902106}
 --- !u!65 &291167683
 BoxCollider:
@@ -5799,6 +5802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d5287106a04424b86292e0ea996cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
+  dungeonPlayerTracker: {fileID: 1819466133}
   room: {fileID: 1198902106}
 --- !u!65 &382014410
 BoxCollider:
@@ -7064,6 +7068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d5287106a04424b86292e0ea996cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
+  dungeonPlayerTracker: {fileID: 1819466133}
   room: {fileID: 1198902106}
 --- !u!65 &492550744
 BoxCollider:
@@ -10678,6 +10683,66 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845255346}
   m_Mesh: {fileID: -5156943788209819049, guid: 98080177dcff419479086bf8263c4168, type: 3}
+--- !u!1 &859873442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 859873443}
+  - component: {fileID: 859873444}
+  m_Layer: 0
+  m_Name: Enemy Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &859873443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859873442}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.81728, y: 1.61546, z: 9.0466}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 543450652817517515}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &859873444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859873442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1875977565987e43a6489aeb2e26ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  enemyPrefab: {fileID: 8141803208140755674, guid: f3b02bad7ac17b1459061f961510bef9, type: 3}
+  player: {fileID: 0}
+  playerFlashlight: {fileID: 0}
+  minSpawnDistance: 15
+  maxSpawnDistance: 40
+  room: {fileID: 1198902106}
+  maxEnemies: 5
+  enemiesSpawned: 0
+  totalEnemiesToSpawn: 5
+  spawnInterval: 1
+  spawnAreaMask:
+    serializedVersion: 2
+    m_Bits: 512
+  activeEnemies: []
+  canSpawn: 0
+  finishedSpawning: 0
 --- !u!1 &874383097
 GameObject:
   m_ObjectHideFlags: 0
@@ -11494,6 +11559,58 @@ Transform:
   - {fileID: 893351850}
   - {fileID: 79910530}
   m_Father: {fileID: 1675253883}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &923083436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 923083438}
+  - component: {fileID: 923083437}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &923083437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923083436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1173caa9ad57274c9c741d9ae0b2288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  audioClips:
+  - {fileID: 8300000, guid: 46c3a33719e43f04699d1319ef59ad50, type: 3}
+  - {fileID: 8300000, guid: 8ad0430ba42391c4a818a3bc4ad73d1b, type: 3}
+  - {fileID: 8300000, guid: b6d1104fb77f8a846aa3ce6ec876ba7d, type: 3}
+  - {fileID: 8300000, guid: 27c6402913a30f6459fd6aa9059760b8, type: 3}
+  - {fileID: 8300000, guid: bdbbbfc4953761642bbc0784a4c59ab6, type: 3}
+  - {fileID: 8300000, guid: ae470b8ab4b6d1b49a012904fa045d3f, type: 3}
+  - {fileID: 8300000, guid: 3703ddcd38be5494dbc6ddc01a8309fc, type: 3}
+--- !u!4 &923083438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923083436}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 474.3364, y: 268.99997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &929022707
 PrefabInstance:
@@ -14857,6 +14974,7 @@ MonoBehaviour:
   - {fileID: 611404396}
   - {fileID: 1836701289}
   activeDoors: []
+  enemySpawner: {fileID: 859873444}
   open: 0
   close: 0
 --- !u!23 &1198902108
@@ -28717,6 +28835,7 @@ Transform:
   - {fileID: 4236249146438961485}
   - {fileID: 6534745837797774524}
   - {fileID: 1708452021}
+  - {fileID: 859873443}
   m_Father: {fileID: 1819466132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &544468636281995380
@@ -46143,7 +46262,7 @@ GameObject:
   - component: {fileID: 7953723193004359940}
   - component: {fileID: 8063231295110116147}
   - component: {fileID: 2080706975338118963}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pPlane1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89944,3 +90063,4 @@ SceneRoots:
   - {fileID: 10825054}
   - {fileID: 1761504581}
   - {fileID: 2054833485}
+  - {fileID: 923083438}
