@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class DungeonPlayerTracker : MonoBehaviour
 {
     public DungeonGenerator dungeonGenerator;
     public Room currentRoom;
+
+    public static event Action<Room> RoomChangeEvent;
 
     private void OnEnable()
     {
@@ -32,12 +35,16 @@ public class DungeonPlayerTracker : MonoBehaviour
     void ResetDungeon()
     {
         ChangeCurrentRoom(dungeonGenerator.startRoom);
+
+        RoomChangeEvent?.Invoke(dungeonGenerator.startRoom);
     }
 
     void ChangeCurrentRoom(Room room)
     {
         if (currentRoom != room) { Debug.Log("Player entered new room"); }
         currentRoom = room;
+
+        RoomChangeEvent?.Invoke(room);
     }
 
     public void ClearCurrentRoom()

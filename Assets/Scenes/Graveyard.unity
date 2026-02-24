@@ -396,6 +396,8 @@ MonoBehaviour:
   spawnAreaMask:
     serializedVersion: 2
     m_Bits: 512
+  activeEnemies: []
+  canSpawn: 1
   finishedSpawning: 0
 --- !u!4 &528787583
 Transform:

@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
     public int moveSpeed;
 
     [Header("Flashlight")]
+    public int damage;
     public int flashlightRange;
     public int flashlightAngle;
 
