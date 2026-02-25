@@ -35,8 +35,6 @@ public class DungeonPlayerTracker : MonoBehaviour
     void ResetDungeon()
     {
         ChangeCurrentRoom(dungeonGenerator.startRoom);
-
-        RoomChangeEvent?.Invoke(dungeonGenerator.startRoom);
     }
 
     void ChangeCurrentRoom(Room room)

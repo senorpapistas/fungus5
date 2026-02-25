@@ -22,7 +22,7 @@ public class Coordinates
 
 public class DungeonGenerator : MonoBehaviour
 {
-    public int[,] dungeon = new int[10, 10];        //make sure minroomcount IS NOT GREATER THAN size of dungeon or it will create an endless loop
+    public int[,] dungeon = new int[11,11];        //make sure minroomcount IS NOT GREATER THAN size of dungeon or it will create an endless loop
 
     public int roomCount;
 
@@ -90,7 +90,7 @@ public class DungeonGenerator : MonoBehaviour
         if (shopRoom != null) { Destroy(shopRoom); shopRoom = null; }
         if (startRoom != null) {shopRoom = null; }
 
-        VisitCell(4, 4);
+        VisitCell(5, 5);
 
         Debug.Log("finished setting up!");
 
