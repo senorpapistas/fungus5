@@ -7,14 +7,17 @@ public class CurrentRoomData : MonoBehaviour
     public TMP_Text roomName;
     public TMP_Text roomCoordinates;
     public TMP_Text roomType;
+    public TMP_Text roomCleared;
     private void OnEnable()
     {
         DungeonPlayerTracker.RoomChangeEvent += UpdateText;
+        Room.RoomClearEvent += UpdateText;
     }
 
     private void OnDisable()
     {
         DungeonPlayerTracker.RoomChangeEvent -= UpdateText;
+        Room.RoomClearEvent -= UpdateText;
     }
 
 
@@ -23,5 +26,6 @@ public class CurrentRoomData : MonoBehaviour
         roomName.text = "Name: " + room.name;
         roomCoordinates.text = "Coordinates: " + room.coordinates.x + " " +room.coordinates.y;
         roomType.text = "Room Type: " + room.roomType;
+        roomCleared.text = "Room Clear: " + room.cleared;
     }
 }

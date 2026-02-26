@@ -34,6 +34,7 @@ public class Flashlight : MonoBehaviour
 
         currentPower = maxPower;
         inCooldown = false;
+        whenToStopCooldown = maxPower;
     }
 
     void Update()
@@ -47,9 +48,12 @@ public class Flashlight : MonoBehaviour
             isOn = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) )
         {
-            AudioManager.Instance.PlaySound("flashlight");
+            if (isOn && !inCooldown)
+            {
+                AudioManager.Instance.PlaySound("flashlight");
+            }
         }
 
             if (isOn && !inCooldown)

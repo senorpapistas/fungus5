@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,6 +38,8 @@ public class Room : MonoBehaviour
     [Header("Dev")]
     public bool open;
     public bool close;
+
+    public static event Action<Room> RoomClearEvent;
 
     private void Update()
     {
@@ -199,6 +202,8 @@ public class Room : MonoBehaviour
     {
         cleared = true;
         OpenDoors();
+
+        RoomClearEvent?.Invoke(this);
     }
 }
 
