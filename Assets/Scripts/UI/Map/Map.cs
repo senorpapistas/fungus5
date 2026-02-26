@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,13 +8,13 @@ public class Map : MonoBehaviour
     public GameObject map;
 
     [Header("Prefabs")]
-    public GameObject roomIcon;
+    public RoomIcon roomIcon;
     public GameObject playerIcon;
 
     [Header("Player")]
     public GameObject player;
 
-    public GameObject[,] grid = new GameObject[11,11];
+    public RoomIcon[,] grid = new RoomIcon[11,11];
 
     private void OnEnable()
     {
@@ -35,10 +36,10 @@ public class Map : MonoBehaviour
         {
             for (int j = 0; j < grid.GetLength(1); j++)
             {
-                GameObject newMapRoom = Instantiate(roomIcon, map.transform);
-                newMapRoom.name = i + " " + j;
-                newMapRoom.SetActive(true);
-                grid[i, j] = newMapRoom;
+                RoomIcon newRoomIcon = Instantiate(roomIcon, map.transform);
+                newRoomIcon.name = i + " " + j;
+                newRoomIcon.gameObject.SetActive(true);
+                grid[i, j] = newRoomIcon;
             }
         }
 
@@ -53,29 +54,46 @@ public class Map : MonoBehaviour
 
     void UpdateMap(Room room)
     {
-        Image image = grid[room.coordinates.x, room.coordinates.y].GetComponent<Image>();
+        Image icon = grid[room.coordinates.x, room.coordinates.y].icon;
         RoomType roomType = room.roomType;
 
         switch (roomType)
         {
             case RoomType.Normal:
-                image.color = Color.white;
+                icon.color = Color.white;
                 break;
             case RoomType.Start:
-                image.color = Color.white;
+                icon.color = Color.white;
                 break;
             case RoomType.End:
-                image.color = Color.green;
+                icon.color = Color.green;
                 break;
             case RoomType.Exit:
-                image.color = Color.red;
+                icon.color = Color.red;
                 break;
             case RoomType.Shop:
-                image.color = Color.orange;
+                icon.color = Color.orange;
                 break;
         }
 
-        playerIcon.transform.SetParent(image.gameObject.transform,true);
+        if (room.hasUpDoor)
+        {
+            grid[room.coordinates.x, room.coordinates.y].up.enabled = true;
+        }
+        if (room.hasDownDoor)
+        {
+            grid[room.coordinates.x, room.coordinates.y].down.enabled = true;
+        }
+        if (room.hasLeftDoor)
+        {
+            grid[room.coordinates.x, room.coordinates.y].left.enabled = true;
+        }
+        if (room.hasRightDoor)
+        {
+            grid[room.coordinates.x, room.coordinates.y].right.enabled = true;
+        }
+
+        playerIcon.transform.SetParent(icon.gameObject.transform,true);
         playerIcon.transform.localPosition = new Vector3(0, 0, 0);
     }
 
@@ -90,7 +108,7 @@ public class Map : MonoBehaviour
         {
             for (int j = 0; j < grid.GetLength(1); j++)
             {
-                grid[i, j].GetComponent<Image>().color = Color.black;
+                grid[i, j].ResetIcon();
             }
         }
     }

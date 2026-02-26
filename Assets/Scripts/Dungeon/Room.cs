@@ -26,6 +26,11 @@ public class Room : MonoBehaviour
     public List<Door> doors = new List<Door>();
     public List<Door> activeDoors = new List<Door>();
 
+    public bool hasUpDoor; //{ get; private set; }
+    public bool hasDownDoor; //{ get; private set; }
+    public bool hasLeftDoor; //{ get; private set; }
+    public bool hasRightDoor; //{ get; private set; }
+
     [Header("Enemy Spawner")]
     public EnemySpawner enemySpawner;
 
@@ -89,20 +94,22 @@ public class Room : MonoBehaviour
 
     public void SetupDoors(int[,] dungeon)
     {
-        //top
+        //up
         if (coordinates.y + 1 < dungeon.GetLength(1) && dungeon[coordinates.x,coordinates.y+1] != 0)
         {
             walls[0].SetActive(false);
             doors[0].gameObject.SetActive(true);
             activeDoors.Add(doors[0]);
+            hasUpDoor = true;
         }
 
-        //bottom
+        //down
         if (coordinates.y - 1 >= 0  && dungeon[coordinates.x, coordinates.y - 1] != 0)
         {
             walls[1].SetActive(false);
             doors[1].gameObject.SetActive(true);
             activeDoors.Add(doors[1]);
+            hasDownDoor = true;
         }
 
         //left
@@ -111,6 +118,7 @@ public class Room : MonoBehaviour
             walls[2].SetActive(false);
             doors[2].gameObject.SetActive(true);
             activeDoors.Add(doors[2]);
+            hasLeftDoor = true;
         }
 
         //right
@@ -119,6 +127,7 @@ public class Room : MonoBehaviour
             walls[3].SetActive(false);
             doors[3].gameObject.SetActive(true);
             activeDoors.Add(doors[3]);
+            hasRightDoor = true;
         }
     }
     #endregion
