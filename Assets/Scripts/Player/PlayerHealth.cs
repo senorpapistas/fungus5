@@ -6,10 +6,12 @@ public class PlayerHealth : MonoBehaviour
 {
     public static event Action<int> PlayerChangeHealthEvent;
 
+    public static event Action<int> PlayerChangeMaxHealthEvent;
+
     public bool takeDamage;
 
     [SerializeField]
-    private int currentHealth, maxHealth;
+    public int maxHealth, currentHealth;
     [SerializeField]
     private float InvincibilityTime;
 
@@ -23,11 +25,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if (takeDamage)
-        {
-            takeDamage = false;
-            LoseHealth(3);
-        }
+
     }
 
     public void GainHealth(int change)
@@ -49,6 +47,12 @@ public class PlayerHealth : MonoBehaviour
 
             AudioManager.Instance.PlaySound("meow");
         }
+    }
+
+    public void ChangeMaxHealth(int change)
+    {
+        maxHealth += change;
+        PlayerChangeMaxHealthEvent?.Invoke(maxHealth);
     }
 
     public int GetCurrentHealth() { return currentHealth; }

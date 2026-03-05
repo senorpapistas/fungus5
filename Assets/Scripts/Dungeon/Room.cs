@@ -32,8 +32,9 @@ public class Room : MonoBehaviour
     public bool hasLeftDoor; //{ get; private set; }
     public bool hasRightDoor; //{ get; private set; }
 
-    [Header("Enemy Spawner")]
+    [Header("Assets")]
     public EnemySpawner enemySpawner;
+    public Chest chest;
 
     [Header("Dev")]
     public bool open;
@@ -204,6 +205,12 @@ public class Room : MonoBehaviour
         OpenDoors();
 
         RoomClearEvent?.Invoke(this);
+
+        //NEED TO REWRITE METHOD TO SPAWN CHEST
+        if (roomType == RoomType.End)
+        {
+            chest.gameObject.SetActive(true);
+        }
     }
 }
 

@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea4ccf2ea0ec284a9a4730ce975e4ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Flashlight
+  playerStats: {fileID: 0}
   flashlight: {fileID: 8624366365362248680}
   enemyLayer:
     serializedVersion: 2
@@ -438,7 +439,6 @@ GameObject:
   - component: {fileID: 6371405591247388741}
   - component: {fileID: 6552727986530271634}
   - component: {fileID: 7258797689882120203}
-  - component: {fileID: 1870203390941782041}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d7c14f3985b4b4ab55a20300876ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicMovement
-  moveSpeed: 3
+  moveSpeed: 15
   turnSpeed: 3
   moving: 0
 --- !u!114 &6371405591247388741
@@ -628,26 +628,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   takeDamage: 0
+  maxHealth: 3
   currentHealth: 0
-  maxHealth: 9
   InvincibilityTime: 2
   invincible: 0
---- !u!114 &1870203390941782041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7498586260322538357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 159ec62fac0f03d488c6c1d10d0e5b63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  maxHealth: 0
-  moveSpeed: 0
-  flashlightRange: 0
-  flashlightAngle: 0
 --- !u!1 &8338567848458006832
 GameObject:
   m_ObjectHideFlags: 0
