@@ -11,17 +11,12 @@ public class RoomIcon : MonoBehaviour
     public Image left;
     public Image right;
 
-    private void Start()
-    {
-        //ResetIcon();    
-    }
-
     public void ResetIcon()
     {
-        icon.color = Color.black;
-        up.enabled = false;
-        down.enabled = false;
-        left.enabled = false;
-        right.enabled = false;
+        if (icon) icon.color = Color.black;
+        if (up) up.enabled = false;
+        if (down) down.enabled = false;
+        if (left) left.enabled = false;
+        if (right) right.enabled = false;
     }
 }

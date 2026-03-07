@@ -809,11 +809,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24274412}
   m_Mesh: {fileID: -6281424698479989189, guid: 98080177dcff419479086bf8263c4168, type: 3}
---- !u!1 &26622804 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6872493844881261654, guid: 53a43065490b56d468f1f24436744245, type: 3}
-  m_PrefabInstance: {fileID: 929022707}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &30095450
 GameObject:
   m_ObjectHideFlags: 0
@@ -5255,28 +5250,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 62756350e3c02294990c432138f07f36, type: 2}
   - {fileID: 11400000, guid: a47262801f079fa48b3de612ecaed330, type: 2}
   - {fileID: 11400000, guid: ac4afb3b3039a8245a8fc42e64a619b4, type: 2}
---- !u!114 &311997335 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7258797689882120203, guid: 53a43065490b56d468f1f24436744245, type: 3}
-  m_PrefabInstance: {fileID: 929022707}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311997323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3df0b886ae23de408d70df81e7a0f7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
---- !u!114 &311997338 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8164735039633033440, guid: 53a43065490b56d468f1f24436744245, type: 3}
-  m_PrefabInstance: {fileID: 929022707}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311997323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2d7c14f3985b4b4ab55a20300876ba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicMovement
 --- !u!1 &312955878
 GameObject:
   m_ObjectHideFlags: 0
@@ -11466,10 +11439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9928dcfc8e60a04fbf27268cda258c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lose
-  playerHealth: {fileID: 311997335}
-  basicmovement: {fileID: 311997338}
-  flashlight: {fileID: 1793754515}
-  playerModel: {fileID: 26622804}
+  player: {fileID: 311997323}
   loseScreen: {fileID: 1859191749}
 --- !u!1 &842286890
 GameObject:
@@ -23291,17 +23261,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781652550}
   m_Mesh: {fileID: 2941139019869669893, guid: 98080177dcff419479086bf8263c4168, type: 3}
---- !u!114 &1793754515 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7953281144862604763, guid: 53a43065490b56d468f1f24436744245, type: 3}
-  m_PrefabInstance: {fileID: 929022707}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ea4ccf2ea0ec284a9a4730ce975e4ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Flashlight
 --- !u!1 &1798384822
 GameObject:
   m_ObjectHideFlags: 0

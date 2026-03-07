@@ -41,9 +41,9 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth -= change;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-            PlayerChangeHealthEvent?.Invoke(currentHealth);
 
             StartInvincibility();
+            PlayerChangeHealthEvent?.Invoke(currentHealth);
 
             AudioManager.Instance.PlaySound("meow");
         }

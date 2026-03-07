@@ -3,10 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Lose : MonoBehaviour
 {
-    public PlayerHealth playerHealth;
-    public BasicMovement basicmovement;
-    public Flashlight flashlight;
-    public GameObject playerModel;
+    public GameObject player;
     public GameObject loseScreen;
 
     private void OnEnable()
@@ -41,10 +38,7 @@ public class Lose : MonoBehaviour
 
     void LoseState()
     {
-        playerHealth.enabled = false;
-        basicmovement.enabled = false;
-        flashlight.enabled = false;
-        playerModel.SetActive(false);
+        player.SetActive(false);
         loseScreen.SetActive(true);
     }
 
