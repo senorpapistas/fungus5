@@ -6,7 +6,7 @@ public class BombNotification : MonoBehaviour
 
     private void OnEnable()
     {
-        InteractItem.ItemHeldEvent += OnItemHeldEvent;
+        PlayerPickup.PickupHeldEvent += OnItemHeldEvent;
     }
 
     private void OnItemHeldEvent(bool itemHeld)

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Heart Container
   description: 
+  sprite: {fileID: 21300000, guid: a902440b3848e0348a71333d2d79f176, type: 3}
   effects:
   - effect: 2
     amount: 1
