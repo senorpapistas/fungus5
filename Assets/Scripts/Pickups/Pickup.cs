@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class Pickup : MonoBehaviour
+public abstract class Pickup : MonoBehaviour,IInteractable
 {
     private Rigidbody _rb;
     [SerializeField] private float _throwStrength = 5f;
@@ -10,6 +10,11 @@ public abstract class Pickup : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         changePhysics(false);
+    }
+
+    public void Use(GameObject player)
+    {
+        PickUp(player.GetComponent<PlayerPickup>().heldPos.transform);
     }
 
     public virtual void PickUp(Transform held)

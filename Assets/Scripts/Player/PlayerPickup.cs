@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlayerPickup : MonoBehaviour
 {
-    public InteractHitbox interact;
-    [SerializeField] private GameObject heldPos;
+    public InteractHitbox interactHitbox;
+    [SerializeField] public GameObject heldPos;
     [SerializeField] private Pickup currPickup;
 
     public static event Action<bool> PickupHeldEvent;
@@ -18,13 +18,9 @@ public class PlayerPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (currPickup == null)
-            {
-                TryPickup();
-            }
-            else if (currPickup != null)
+            if (currPickup != null)
             {
                 currPickup.Throw();
                 currPickup = null;
@@ -34,20 +30,4 @@ public class PlayerPickup : MonoBehaviour
             }
         }
     }
-
-    void TryPickup()
-    {
-        for (int i = 0; i < interact.hitColliders.Length; i++)
-        {
-            if (interact.hitColliders[i].GetComponent<Pickup>() != null)
-            {
-                currPickup = interact.hitColliders[i].GetComponent<Pickup>();
-                currPickup.PickUp(heldPos.transform);
-                AudioManager.Instance.PlaySound("equip");
-                PickupHeldEvent?.Invoke(true);
-                break;
-            }
-        }
-    }
-
 }

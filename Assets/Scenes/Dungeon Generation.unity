@@ -5273,7 +5273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9422044fb8c70a74192044f8157c4df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPickup
-  interact: {fileID: 311997336}
+  interactHitbox: {fileID: 311997336}
   heldPos: {fileID: 727706468}
   currPickup: {fileID: 0}
 --- !u!114 &311997344
@@ -5288,7 +5288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43c9724d6f21be45b5aaff525a64a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
-  interact: {fileID: 311997336}
+  interactHitbox: {fileID: 311997336}
 --- !u!1 &312955878
 GameObject:
   m_ObjectHideFlags: 0
@@ -12945,10 +12945,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7498586260322538357, guid: 53a43065490b56d468f1f24436744245, type: 3}
       insertIndex: 8
-      addedObject: {fileID: 311997343}
+      addedObject: {fileID: 311997344}
     - targetCorrespondingSourceObject: {fileID: 7498586260322538357, guid: 53a43065490b56d468f1f24436744245, type: 3}
       insertIndex: 9
-      addedObject: {fileID: 311997344}
+      addedObject: {fileID: 311997343}
     - targetCorrespondingSourceObject: {fileID: 7498586260322538357, guid: 53a43065490b56d468f1f24436744245, type: 3}
       insertIndex: -1
       addedObject: {fileID: 311997334}
@@ -14600,8 +14600,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.607973, z: 1}
+  m_Center: {x: 0, y: 0.80398655, z: 0}
 --- !u!23 &1029243186
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17708,25 +17708,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 468163411}
     m_Modifications:
-    - target: {fileID: 1736153991965772720, guid: de6d0f596f81c6544b0e4de04539303d, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1736153991965772720, guid: de6d0f596f81c6544b0e4de04539303d, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1736153991965772720, guid: de6d0f596f81c6544b0e4de04539303d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -250
-      objectReference: {fileID: 0}
-    - target: {fileID: 1736153991965772720, guid: de6d0f596f81c6544b0e4de04539303d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2909452715001593776, guid: de6d0f596f81c6544b0e4de04539303d, type: 3}
-      propertyPath: m_text
-      value: 'E: Bomb'
+    - target: {fileID: 1162816913562942834, guid: de6d0f596f81c6544b0e4de04539303d, type: 3}
+      propertyPath: offset
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5082189670622704892, guid: de6d0f596f81c6544b0e4de04539303d, type: 3}
       propertyPath: m_Name

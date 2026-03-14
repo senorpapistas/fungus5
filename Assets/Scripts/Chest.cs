@@ -22,15 +22,12 @@ public class Chest : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.G))
-        {
-            Use();
-        }
+
     }
 
-    public void Use()
+    public void Use(GameObject player)
     {
-        GiveItem(GameObject.FindWithTag("Player"));
+        GiveItem(player);
         Destroy(gameObject);
     }
 

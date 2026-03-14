@@ -1,8 +1,10 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    public InteractHitbox interact;
+    public InteractHitbox interactHitbox;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,14 +23,10 @@ public class PlayerInteract : MonoBehaviour
 
     void TryInteract()
     {
-        for (int i = 0; i < interact.hitColliders.Length; i++)
-        {
-            if (interact.hitColliders[i].GetComponent<IInteractable>() != null)
+            if (interactHitbox.firstCollider.GetComponent<IInteractable>() != null)
             {
-                interact.hitColliders[i].GetComponent<IInteractable>().Use();
+                interactHitbox.firstCollider.GetComponent<IInteractable>().Use(this.gameObject);
                 AudioManager.Instance.PlaySound("equip");
-                break;
             }
-        }
     }
 }
