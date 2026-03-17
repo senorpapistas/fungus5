@@ -194,6 +194,7 @@ public class Room : MonoBehaviour
             {
                 CloseDoors();
                 enemySpawner.StartSpawn();
+                AudioManager.Instance.PlaySound("Gate Open");
             }
         }
     }
@@ -206,10 +207,18 @@ public class Room : MonoBehaviour
 
         RoomClearEvent?.Invoke(this);
 
+
         //NEED TO REWRITE METHOD TO SPAWN CHEST
         if (roomType == RoomType.End)
         {
             chest.gameObject.SetActive(true);
+        }
+
+        //audio
+        if (roomType != RoomType.Exit || roomType != RoomType.Shop)
+        {
+
+            AudioManager.Instance.PlaySound("Gate Close");
         }
     }
 }

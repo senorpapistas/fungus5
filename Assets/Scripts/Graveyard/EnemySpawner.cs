@@ -163,7 +163,7 @@ public class EnemySpawner : MonoBehaviour
     {
         while (enemy != null)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f);
         }
         activeEnemies.Remove(enemy);
     }
